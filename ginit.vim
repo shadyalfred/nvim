@@ -1,3 +1,3 @@
 set mouse=a
-GuiFont JetBrains Mono:h12
+GuiFont JetBrains Mono:h10
 GuiRenderLigatures 1

@@ -1,2 +1,5 @@
-libs/*
+libs/**
 !libs/README.md
+
+plugin/**
+!plugin
