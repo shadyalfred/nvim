@@ -1,3 +1,3 @@
 set mouse=a
-GuiFont JetBrains Mono:h10
+GuiFont CaskaydiaCove Nerd Font:h10
 GuiRenderLigatures 1

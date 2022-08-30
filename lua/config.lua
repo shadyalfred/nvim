@@ -69,7 +69,17 @@ vim.api.nvim_set_keymap('', '<Leader>oe', ':split term://zsh<CR>', { noremap = t
 vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true })
 vim.api.nvim_set_keymap('t', '<C-p>', '<Up>', { noremap = true })
 vim.api.nvim_set_keymap('t', '<C-n>', '<Down>', { noremap = true })
-vim.api.nvim_set_keymap('t', '<C-l>', '<Right>', { noremap = true })
+vim.api.nvim_set_keymap('t', '<A-l>', '<Right>', { noremap = true })
+vim.cmd[[ au TermOpen * setlocal nonumber ]]
+
+vim.keymap.set(
+    'n',
+    '<Leader>"',
+    function()
+        local command = 'alacritty --working-directory ' .. vim.fn.getcwd()
+        io.popen(command)
+    end
+)
 --
 
 vim.keymap.set({ 'n',  'v' }, 's', '<Plug>Sneak_s', { noremap = true })
@@ -92,6 +102,4 @@ vim.keymap.set('n', '<Leader>ff', '<cmd>Dired<cr>', { noremap = true, silent = t
 
 
 -- Theme
-vim.g.tokyonight_style = 'night'
-
-vim.cmd[[colorscheme tokyonight]]
+vim.cmd[[colorscheme nightfox]]

@@ -32,7 +32,7 @@ vim.api.nvim_set_keymap(
 vim.api.nvim_set_keymap(
   'n',
   '<Leader>fr',
-  '<cmd>Telescope <cr>',
+  '<cmd>Telescope oldfiles<cr>',
   { noremap = true, silent = true }
 )
 

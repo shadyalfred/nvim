@@ -3,15 +3,18 @@ return require('packer').startup(function()
 
   use 'tpope/vim-surround'
   use 'tpope/vim-repeat'
+  use 'Vonr/align.nvim'
 
   use 'NMAC427/guess-indent.nvim'
 
-  use 'folke/tokyonight.nvim'
+  use 'EdenEast/nightfox.nvim'
 
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
+
+  use 'nanozuki/tabby.nvim'
 
   use {
     'nvim-telescope/telescope.nvim', branch = '0.1.x',

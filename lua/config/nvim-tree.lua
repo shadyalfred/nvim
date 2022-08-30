@@ -2,5 +2,8 @@ vim.api.nvim_set_keymap('n', '<Space>op', ':NvimTreeToggle<CR>', { noremap = tru
 
 require('nvim-tree').setup {
     hijack_netrw = false,
-    sync_root_with_cwd = true
+    sync_root_with_cwd = true,
+    view = {
+        side = 'right'
+    }
 }

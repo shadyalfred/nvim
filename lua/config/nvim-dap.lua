@@ -4,19 +4,25 @@ local dapui = require('dapui')
 -- Adapters
 dap.adapters.codelldb = {
   type = 'server',
-  port = "${port}",
+  port = '${port}',
   executable = {
     command = vim.env.HOME .. '/Apps/vadimcn.vscode-lldb-1.7.4/extension/adapter/codelldb',
-    args = {"--port", "${port}"},
+    args = {'--port', '${port}'},
   }
 }
 
--- c++
+dap.adapters.coreclr = {
+  type = 'executable',
+  command = '/usr/bin/netcoredbg',
+  args = { '--interpreter=vscode' }
+}
+
+-- C++
 dap.configurations.cpp = {
   {
-    name = "Launch file",
-    type = "codelldb",
-    request = "launch",
+    name = 'Launch file',
+    type = 'codelldb',
+    request = 'launch',
     program = function()
       return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
     end,
@@ -29,11 +35,23 @@ dap.configurations.cpp = {
 dap.configurations.rust = {
   {
     name = 'Rust debug',
-    type = "codelldb",
-    request = "launch",
+    type = 'codelldb',
+    request = 'launch',
     cwd = '${workspaceFolder}',
     stopOnEntry = true,
     showDisassembly = 'never'
+  },
+}
+
+-- C#
+dap.configurations.cs = {
+  {
+    type = 'coreclr',
+    name = 'launch - netcoredbg',
+    request = 'launch',
+    program = function()
+        return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/bin/Debug/net6.0/', 'file')
+    end,
   },
 }
 

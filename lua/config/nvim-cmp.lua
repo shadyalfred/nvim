@@ -1,12 +1,12 @@
 local cmp = require'cmp'
 
 cmp.setup({
-    view = {
-      entries = {
-          name = { 'wildmenu', 'custom' },
-          selection_order = 'near_cursor'
-      },
-    },
+   view = {
+     entries = {
+         name = { 'wildmenu', 'custom' },
+         selection_order = 'near_cursor'
+     },
+   },
     snippet = {
         -- REQUIRED - you must specify a snippet engine
         expand = function(args)

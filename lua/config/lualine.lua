@@ -5,9 +5,9 @@ end
 
 require('lualine').setup {
   options = {
-    component_separators = '',
-    section_separators = { left = '', right = '' },
-    theme = 'tokyonight'
+    section_separators = { left = '', right = '' },
+    component_separators = { left = '', right = '' },
+    globalstatus = true,
   },
   sections = {
     lualine_c = { maximize_status, 'filename' }

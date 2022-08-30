@@ -1,7 +1,5 @@
 require('plugins')
 
-require('config.lualine')
-
 require('guess-indent').setup {}
 
 require('config.nvim-tree')
@@ -16,6 +14,10 @@ require('orgmode').setup {}
 require('Comment').setup()
 
 require('config')
+require('config.lualine')
+require('config.tabby')
+
+require('config.align')
 
 require('config.maximize')
 
