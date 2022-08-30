@@ -71,6 +71,8 @@ vim.api.nvim_set_keymap('t', '<C-p>', '<Up>', { noremap = true })
 vim.api.nvim_set_keymap('t', '<C-n>', '<Down>', { noremap = true })
 vim.api.nvim_set_keymap('t', '<A-l>', '<Right>', { noremap = true })
 vim.cmd[[ au TermOpen * setlocal nonumber ]]
+vim.cmd[[ au TermOpen * setlocal modifiable ]]
+vim.cmd[[ au TermOpen * if &buftype ==# 'terminal' | resize 8 | endif ]]
 
 vim.keymap.set(
     'n',
@@ -92,8 +94,6 @@ vim.api.nvim_set_keymap('n', '<Leader>sc', ':nohlsearch<CR>', { noremap = true, 
 -- buffers
 vim.keymap.set('n', '[b', '<Cmd>bprevious<CR>')
 vim.keymap.set('n', ']b', '<Cmd>bnext<CR>')
--- vim.keymap.set('n', 'gT', '<Cmd>bprevious<CR>')
--- vim.keymap.set('n', 'gt', '<Cmd>bnext<CR>')
 vim.keymap.set('n', '<Leader>bp', '<Cmd>bprevious<CR>')
 vim.keymap.set('n', '<Leader>bn', '<Cmd>bnext<CR>')
 
