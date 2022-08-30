@@ -29,3 +29,4 @@ require('config.nvim-dap')
 require('config.rust-tools')
 
 require('config.telescope')
+require('config.neogit')

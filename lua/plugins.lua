@@ -67,6 +67,8 @@ return require('packer').startup(function()
     requires = { 'mfussenegger/nvim-dap' }
   }
 
+  use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+
   use {
     'X3eRo0/dired.nvim',
     requires = 'MunifTanjim/nui.nvim'
