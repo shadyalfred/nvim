@@ -25,8 +25,12 @@ require('config.nvim-cmp')
 require('config.lsp')
 require('config.trouble')
 
+require('config.nvim-ufo')
+
 require('config.nvim-dap')
 require('config.rust-tools')
 
 require('config.telescope')
 require('config.neogit')
+
+require('config.orgmode')

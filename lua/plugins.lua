@@ -7,7 +7,7 @@ return require('packer').startup(function()
 
   use 'NMAC427/guess-indent.nvim'
 
-  use 'EdenEast/nightfox.nvim'
+  use 'folke/tokyonight.nvim'
 
   use {
     'nvim-lualine/lualine.nvim',
@@ -82,6 +82,8 @@ return require('packer').startup(function()
     'nvim-treesitter/nvim-treesitter',
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
   }
+
+  use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
 
   use {
     'nvim-orgmode/orgmode'
