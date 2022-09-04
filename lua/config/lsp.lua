@@ -27,6 +27,7 @@ local on_attach = function(client, bufnr)
 end
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- fix gutter width madness
 vim.o.signcolumn = 'yes'
@@ -58,10 +59,20 @@ lspconfig.rust_analyzer.setup {
 }
 
 -- C#
-require'lspconfig'.csharp_ls.setup{
+lspconfig.csharp_ls.setup{
   on_attach = on_attach,
   capabilities = capabilities
 }
+
+-- emmet
+lspconfig.emmet_ls.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    cmd = {
+      '/home/shady/.config/nvm/versions/node/v18.3.0/bin/emmet-ls',
+      '--stdio'
+    }
+})
 
 -- Format on save
 vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
