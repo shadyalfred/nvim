@@ -1,12 +1,6 @@
 local cmp = require'cmp'
 
 cmp.setup({
-   view = {
-     entries = {
-         name = { 'wildmenu', 'custom' },
-         selection_order = 'near_cursor'
-     },
-   },
     snippet = {
         -- REQUIRED - you must specify a snippet engine
         expand = function(args)
@@ -21,6 +15,7 @@ cmp.setup({
             winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
             col_offset = -3,
             side_padding = 0,
+            completeopt = 'menu,menuone,noinsert'
         }
         -- documentation = cmp.config.window.bordered(),
     },
