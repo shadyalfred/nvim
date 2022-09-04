@@ -39,12 +39,32 @@ vim.o.splitright = true
 -- Fold level
 vim.o.foldlevel = 99
 
+-- word wrap
+vim.wo.wrap      = true
+vim.wo.linebreak = true
+
 -- Highlight yanked text
 vim.api.nvim_command('au TextYankPost * silent! lua vim.highlight.on_yank()')
 
 -- Mappings
 vim.api.nvim_set_keymap('', '<Leader>w', '<C-w>', { noremap = true })
 vim.api.nvim_set_keymap('', '<Leader>wd', '<C-w>c', { noremap = true })
+
+-- Toggle wordwarp
+vim.keymap.set(
+    'n',
+    '<Leader>tw',
+    function()
+        if (vim.wo.wrap and vim.wo.linebreak) then
+            vim.wo.wrap      = false
+            vim.wo.linebreak = false
+        else
+            vim.wo.wrap      = true
+            vim.wo.linebreak = true
+        end
+    end
+)
+
 
 -- Close buffer
 vim.keymap.set(
@@ -100,6 +120,8 @@ vim.keymap.set('n', '<Leader>bn', '<Cmd>bnext<CR>')
 -- dired
 vim.keymap.set('n', '<Leader>ff', '<cmd>Dired<cr>', { noremap = true, silent = true })
 
-
 -- Theme
-vim.cmd[[colorscheme nightfox]]
+vim.cmd[[colorscheme tokyonight]]
+
+-- Font
+vim.o.guifont = 'CaskaydiaCove Nerd Font:h10'
