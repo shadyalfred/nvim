@@ -44,32 +44,48 @@ dap.configurations.rust = {
 }
 
 -- C#
+local function dotnet_build_project()
+  local path = vim.fn.input('Path to your *proj file: ', vim.fn.getcwd(), 'file')
+  local cmd = 'dotnet build -c Debug ' .. path .. ' > /dev/null'
+  print('')
+  print('Cmd to execute: ' .. cmd)
+  local f = os.execute(cmd)
+  if f == 0 then
+    print('\nBuild: ✔️ ')
+  else
+    print('\nBuild: ❌ (code: ' .. f .. ')')
+  end
+end
+
 dap.configurations.cs = {
   {
     type = 'coreclr',
     name = 'launch - netcoredbg',
     request = 'launch',
     program = function()
-        return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/bin/Debug/net6.0/', 'file')
+      if vim.fn.confirm('Should I recompile first?', '&yes\n&no', 2) == 1 then
+        dotnet_build_project()
+      end
+      return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/bin/Debug/net6.0/', 'file')
     end,
   },
 }
 
 -- keymappings
 vim.keymap.set(
-'n',
-'<Leader>dd',
-function()
-  dapui.toggle()
-end
+  'n',
+  '<Leader>dd',
+  function()
+    dapui.toggle()
+  end
 )
 
 vim.keymap.set(
-'n',
-'<Leader>dc',
-function()
-  dap.continue()
-end
+  'n',
+  '<Leader>dc',
+  function()
+    dap.continue()
+  end
 )
 
 vim.keymap.set(
@@ -187,3 +203,16 @@ end
 dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close()
 end
+
+-- Theme
+vim.highlight.create('DapBreakpoint', { guifg='#AAAAFF' })
+vim.highlight.create('DapBreakpointLine', { guibg='#222244' })
+vim.highlight.create('DapStopped', { guifg='#228822' })
+vim.highlight.create('DapStoppedLine', { guibg='#224422' })
+
+vim.fn.sign_define('DapBreakpoint', { text='', texthl='DapBreakpoint', linehl='DapBreakpointLine', numhl='DapBreakpoint' })
+vim.fn.sign_define('DapBreakpointCondition', { text='ﳁ', texthl='DapBreakpoint', linehl='DapBreakpointLine', numhl='DapBreakpoint' })
+vim.fn.sign_define('DapBreakpointRejected', { text='', texthl='DapBreakpoint', linehl='DapBreakpointLine', numhl= 'DapBreakpoint' })
+vim.fn.sign_define('DapLogPoint', { text='', texthl='DapLogPoint', linehl='DapLogPointLine', numhl= 'DapLogPoint' })
+vim.fn.sign_define('DapStopped', { text='', texthl='DapStopped', linehl='DapStoppedLine', numhl= 'DapStopped' })
+
