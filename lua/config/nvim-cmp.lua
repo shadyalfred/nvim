@@ -30,7 +30,9 @@ cmp.setup({
             local kind = require('lspkind').cmp_format({ mode = 'symbol_text', maxwidth = 50 })(entry, vim_item)
             local strings = vim.split(kind.kind, '%s', { trimempty = true })
             kind.kind = ' ' .. strings[1] .. ' '
-            kind.menu = '    (' .. strings[2] .. ')'
+            if (strings[2] ~= nil and strings[2] ~= '') then
+                kind.menu = '    (' .. strings[2] .. ')'
+            end
 
             return kind
         end,
@@ -46,6 +48,7 @@ cmp.setup({
         { name = 'nvim_lsp' },
         { name = 'nvim_lsp_signature_help' },
         { name = 'nvim_lsp_document_symbol' },
+        { name = 'path' },
         { name = 'vsnip' }, -- For vsnip users.
         -- { name = 'luasnip' }, -- For luasnip users.
         -- { name = 'ultisnips' }, -- For ultisnips users.
@@ -71,7 +74,7 @@ cmp.setup.filetype('gitcommit', {
 cmp.setup.cmdline('/', {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
-        { name = 'buffer' }
+        { name = 'buffer' },
     }
 })
 
@@ -85,24 +88,24 @@ cmp.setup.cmdline(':', {
     })
 })
 
-vim.cmd([[
-" gray
-highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080
-" blue
-highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
-highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6
-" light blue
-highlight! CmpItemKindVariable guibg=NONE guifg=#9CDCFE
-highlight! CmpItemKindInterface guibg=NONE guifg=#9CDCFE
-highlight! CmpItemKindText guibg=NONE guifg=#9CDCFE
-" pink
-highlight! CmpItemKindFunction guibg=NONE guifg=#C586C0
-highlight! CmpItemKindMethod guibg=NONE guifg=#C586C0
-" front
-highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
-highlight! CmpItemKindProperty guibg=NONE guifg=#D4D4D4
-highlight! CmpItemKindUnit guibg=NONE guifg=#D4D4D4
-]])
+-- vim.cmd([[
+-- " gray
+-- highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080
+-- " blue
+-- highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
+-- highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6
+-- " light blue
+-- highlight! CmpItemKindVariable guibg=NONE guifg=#9CDCFE
+-- highlight! CmpItemKindInterface guibg=NONE guifg=#9CDCFE
+-- highlight! CmpItemKindText guibg=NONE guifg=#9CDCFE
+-- " pink
+-- highlight! CmpItemKindFunction guibg=NONE guifg=#C586C0
+-- highlight! CmpItemKindMethod guibg=NONE guifg=#C586C0
+-- " front
+-- highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
+-- highlight! CmpItemKindProperty guibg=NONE guifg=#D4D4D4
+-- highlight! CmpItemKindUnit guibg=NONE guifg=#D4D4D4
+-- ]])
 
 -- Setup lspconfig.
 -- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
