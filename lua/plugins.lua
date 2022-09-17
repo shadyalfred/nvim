@@ -116,4 +116,6 @@ return require('packer').startup(function()
     requires = 'ray-x/guihua.lua'
   }
 
+  use 'vim-scripts/ReplaceWithRegister'
+
 end)
