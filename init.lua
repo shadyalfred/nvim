@@ -4,8 +4,6 @@ require('guess-indent').setup {}
 
 require('config.nvim-tree')
 
-require('config.dired')
-
 require('config.nvim-treesitter')
 
 require('orgmode').setup_ts_grammar()
@@ -16,6 +14,8 @@ require('Comment').setup()
 require('config')
 require('config.lualine')
 require('config.tabby')
+
+require('config.dired')
 
 require('config.align')
 

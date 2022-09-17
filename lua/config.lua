@@ -117,9 +117,6 @@ vim.keymap.set('n', ']b', '<Cmd>bnext<CR>')
 vim.keymap.set('n', '<Leader>bp', '<Cmd>bprevious<CR>')
 vim.keymap.set('n', '<Leader>bn', '<Cmd>bnext<CR>')
 
--- dired
-vim.keymap.set('n', '<Leader>ff', '<cmd>Dired<cr>', { noremap = true, silent = true })
-
 -- Theme
 vim.cmd[[colorscheme tokyonight]]
 
