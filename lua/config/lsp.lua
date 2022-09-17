@@ -74,5 +74,10 @@ lspconfig.emmet_ls.setup({
     }
 })
 
+lspconfig.gopls.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+
 -- Format on save
 vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]

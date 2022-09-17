@@ -111,4 +111,9 @@ return require('packer').startup(function()
     }
   }
 
+  use {
+    'ray-x/go.nvim',
+    requires = 'ray-x/guihua.lua'
+  }
+
 end)

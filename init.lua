@@ -28,7 +28,9 @@ require('config.trouble')
 require('config.nvim-ufo')
 
 require('config.nvim-dap')
+
 require('config.rust-tools')
+require('config.go')
 
 require('config.telescope')
 require('config.neogit')
