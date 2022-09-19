@@ -22,6 +22,7 @@ return require('packer').startup(function()
   }
 
   use 'justinmk/vim-sneak'
+  use 'easymotion/vim-easymotion'
 
   use {
     'kyazdani42/nvim-tree.lua',
