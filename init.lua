@@ -12,6 +12,7 @@ require('orgmode').setup {}
 require('Comment').setup()
 
 require('config')
+require('config.sneak')
 require('config.lualine')
 require('config.tabby')
 

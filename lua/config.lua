@@ -1,7 +1,6 @@
 -- Set default clipboard to the system wide clipboard
 vim.o.clipboard = 'unnamedplus'
 vim.o.pastetoggle = '<Space>p'
-vim.keymap.set({'n', 'v'}, '<C-d>', '"_d')
 
 -- Show line's number
 vim.wo.number = true
@@ -103,9 +102,6 @@ vim.keymap.set(
     end
 )
 --
-
-vim.keymap.set({ 'n',  'v' }, 's', '<Plug>Sneak_s', { noremap = true })
-vim.keymap.set({ 'n',  'v' }, 'S', '<Plug>Sneak_S', { noremap = true })
 
 vim.api.nvim_set_keymap('n', '<Space>fs', ':w<CR>', { noremap = true })
 
