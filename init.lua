@@ -27,6 +27,7 @@ require('config.maximize')
 require('config.nvim-cmp')
 require('config.lsp')
 require('config.trouble')
+require('config.nvim-spectre')
 
 require('config.nvim-ufo')
 

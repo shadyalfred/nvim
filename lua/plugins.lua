@@ -102,6 +102,16 @@ return require('packer').startup(function()
     'caenrique/nvim-maximize-window-toggle'
   }
 
+  use {
+    'windwp/nvim-spectre',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'kyazdani42/nvim-web-devicons'
+    }
+  }
+
+  use 'vim-scripts/ReplaceWithRegister'
+
   -- langauge specific
   use {
     'simrat39/rust-tools.nvim',
@@ -116,7 +126,5 @@ return require('packer').startup(function()
     'ray-x/go.nvim',
     requires = 'ray-x/guihua.lua'
   }
-
-  use 'vim-scripts/ReplaceWithRegister'
 
 end)
