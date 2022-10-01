@@ -97,8 +97,12 @@ vim.keymap.set(
     'n',
     '<Leader>"',
     function()
-        local command = 'alacritty --working-directory ' .. vim.fn.getcwd()
-        io.popen(command)
+        local Job = require'plenary.job'
+
+        Job:new({
+            command = 'alacritty',
+            cwd = vim.fn.getcwd(),
+        }):start()
     end
 )
 --

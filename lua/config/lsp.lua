@@ -74,9 +74,19 @@ lspconfig.emmet_ls.setup({
     }
 })
 
+-- golang
 lspconfig.gopls.setup({
     on_attach = on_attach,
     capabilities = capabilities,
+})
+
+-- TypeScript
+lspconfig.tsserver.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    cmd = {
+      '/home/shady/.config/nvm/versions/node/v18.3.0/bin/typescript-language-server', '--stdio'
+    }
 })
 
 -- Format on save

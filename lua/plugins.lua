@@ -1,6 +1,8 @@
 return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
+  use 'nvim-lua/plenary.nvim'
+
   use 'tpope/vim-surround'
   use 'tpope/vim-repeat'
   use 'Vonr/align.nvim'
@@ -18,7 +20,7 @@ return require('packer').startup(function()
 
   use {
     'nvim-telescope/telescope.nvim', branch = '0.1.x',
-    requires = { {'nvim-lua/plenary.nvim'} }
+    requires = 'nvim-lua/plenary.nvim'
   }
 
   use 'justinmk/vim-sneak'
