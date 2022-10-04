@@ -1,4 +1,5 @@
 return require('packer').startup(function()
+
   use 'wbthomason/packer.nvim'
 
   use 'nvim-lua/plenary.nvim'
@@ -127,6 +128,13 @@ return require('packer').startup(function()
   use {
     'ray-x/go.nvim',
     requires = 'ray-x/guihua.lua'
+  }
+
+  use {
+    'iamcco/markdown-preview.nvim',
+    run = 'cd app && npm install',
+    setup = function() vim.g.mkdp_filetypes = { 'markdown' } end,
+    ft = { 'markdown' },
   }
 
 end)

@@ -40,3 +40,5 @@ require('config.telescope')
 require('config.neogit')
 
 require('config.orgmode')
+
+require('config.markdown-preview')
