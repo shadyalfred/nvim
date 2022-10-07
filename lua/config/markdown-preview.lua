@@ -9,7 +9,7 @@ vim.g.mkdp_refresh_slow = 0
 -- valid: `/path/with\ space/xxx`
 -- invalid: `/path/with\\ space/xxx`
 -- default: ''
--- vim.g.mkdp_browser = ''
+vim.g.mkdp_browser = 'brave'
 
 -- options for markdown render
 -- mkit: markdown-it options for render
