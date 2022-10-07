@@ -205,14 +205,14 @@ dap.listeners.before.event_exited["dapui_config"] = function()
 end
 
 -- Theme
-vim.highlight.create('DapBreakpoint', { guifg='#AAAAFF' })
-vim.highlight.create('DapBreakpointLine', { guibg='#222244' })
-vim.highlight.create('DapStopped', { guifg='#228822' })
-vim.highlight.create('DapStoppedLine', { guibg='#224422' })
+vim.api.nvim_set_hl(0, 'DapBreakpoint',     { fg='#AAAAFF' })
+vim.api.nvim_set_hl(0, 'DapBreakpointLine', { bg='#222244' })
+vim.api.nvim_set_hl(0, 'DapStopped',        { fg='#228822' })
+vim.api.nvim_set_hl(0, 'DapStoppedLine',    { bg='#224422' })
 
-vim.fn.sign_define('DapBreakpoint', { text='', texthl='DapBreakpoint', linehl='DapBreakpointLine', numhl='DapBreakpoint' })
+vim.fn.sign_define('DapBreakpoint',          { text='', texthl='DapBreakpoint', linehl='DapBreakpointLine', numhl='DapBreakpoint' })
 vim.fn.sign_define('DapBreakpointCondition', { text='ﳁ', texthl='DapBreakpoint', linehl='DapBreakpointLine', numhl='DapBreakpoint' })
-vim.fn.sign_define('DapBreakpointRejected', { text='', texthl='DapBreakpoint', linehl='DapBreakpointLine', numhl= 'DapBreakpoint' })
-vim.fn.sign_define('DapLogPoint', { text='', texthl='DapLogPoint', linehl='DapLogPointLine', numhl= 'DapLogPoint' })
-vim.fn.sign_define('DapStopped', { text='', texthl='DapStopped', linehl='DapStoppedLine', numhl= 'DapStopped' })
+vim.fn.sign_define('DapBreakpointRejected',  { text='', texthl='DapBreakpoint', linehl='DapBreakpointLine', numhl= 'DapBreakpoint' })
+vim.fn.sign_define('DapLogPoint',            { text='', texthl='DapLogPoint', linehl='DapLogPointLine', numhl= 'DapLogPoint' })
+vim.fn.sign_define('DapStopped',             { text='', texthl='DapStopped', linehl='DapStoppedLine', numhl= 'DapStopped' })
 
