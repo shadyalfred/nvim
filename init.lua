@@ -42,3 +42,5 @@ require('config.neogit')
 require('config.orgmode')
 
 require('config.markdown-preview')
+
+require('config.neovide')
