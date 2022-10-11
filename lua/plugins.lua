@@ -1,5 +1,4 @@
 return require('packer').startup(function()
-
   use 'wbthomason/packer.nvim'
 
   use 'nvim-lua/plenary.nvim'
@@ -137,4 +136,14 @@ return require('packer').startup(function()
     ft = { 'markdown' },
   }
 
+  use {
+    'smjonas/live-command.nvim',
+    config = function()
+      require('live-command').setup {
+        commands = {
+          Norm = { cmd = 'norm' },
+        },
+      }
+    end,
+  }
 end)
