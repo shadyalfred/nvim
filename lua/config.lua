@@ -118,7 +118,10 @@ vim.keymap.set('n', '<Leader>bp', '<Cmd>bprevious<CR>')
 vim.keymap.set('n', '<Leader>bn', '<Cmd>bnext<CR>')
 
 -- Theme
-vim.cmd[[colorscheme tokyonight]]
-
--- Font
-vim.o.guifont = 'CaskaydiaCove Nerd Font:h10'
+if vim.env.TERM == 'xterm' then
+    vim.cmd[[colorscheme tokyonight-day]]
+    vim.cmd[[set termbidi]]
+    vim.cmd[[set arabic]]
+else
+    vim.cmd[[colorscheme tokyonight]]
+end
