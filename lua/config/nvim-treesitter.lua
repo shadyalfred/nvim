@@ -3,6 +3,7 @@ require('nvim-treesitter').setup {
     'lua',
     'html',
     'css',
+    'php',
     'javascript',
     'typescript',
     'c_sharp',
@@ -10,7 +11,8 @@ require('nvim-treesitter').setup {
     'json',
     'markdown',
     'org',
-    'yaml'
+    'toml',
+    'yaml',
   },
   sync_install = false,
 

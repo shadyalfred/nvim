@@ -6,7 +6,7 @@ dap.adapters.codelldb = {
   type = 'server',
   port = '${port}',
   executable = {
-    command = vim.env.HOME .. '/Apps/vadimcn.vscode-lldb-1.7.4/extension/adapter/codelldb',
+    command = vim.env.HOME .. '/.config/nvim/libs/vadimcn.vscode-lldb-1.7.4/extension/adapter/codelldb',
     args = {'--port', '${port}'},
   }
 }
@@ -15,6 +15,12 @@ dap.adapters.coreclr = {
   type = 'executable',
   command = '/usr/bin/netcoredbg',
   args = { '--interpreter=vscode' }
+}
+
+dap.adapters.php = {
+  type = 'executable',
+  command = 'node',
+  args = { vim.env.HOME .. '/.config/nvim/libs/vscode-php-debug/out/phpDebug.js' }
 }
 
 -- C++
@@ -69,6 +75,16 @@ dap.configurations.cs = {
       return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/bin/Debug/net6.0/', 'file')
     end,
   },
+}
+
+-- PHP
+dap.configurations.php = {
+  {
+    type = 'php',
+    request = 'launch',
+    name = 'Listen for Xdebug',
+    port = 9000
+  }
 }
 
 -- keymappings

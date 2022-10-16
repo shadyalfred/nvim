@@ -89,5 +89,14 @@ lspconfig.tsserver.setup({
     }
 })
 
+-- PHP
+lspconfig.intelephense.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = {
+    '/home/shady/.config/nvm/versions/node/v18.3.0/bin/intelephense', '--stdio'
+  }
+})
+
 -- Format on save
 vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
