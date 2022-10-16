@@ -8,7 +8,12 @@ local function tab_label(tabid, active)
   local icon = active and '' or ''
   local number = vim.api.nvim_tabpage_get_number(tabid)
   local name = util.get_tab_name(tabid)
-  return string.format(' %s %d: %s ', icon, number, name)
+
+  local buid = vim.api.nvim_win_get_buf(vim.api.nvim_get_current_win())
+  local is_modified = vim.api.nvim_buf_get_option(buid, 'modified')
+  local modifiedIcon = is_modified and '' or ''
+
+  return string.format(' %s %d: %s %s', icon, number, name, modifiedIcon)
 end
 
 local tabline = {
