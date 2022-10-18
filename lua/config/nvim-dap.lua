@@ -19,7 +19,7 @@ dap.adapters.coreclr = {
 
 dap.adapters.php = {
   type = 'executable',
-  command = 'node',
+  command = vim.env.HOME .. '/.config/nvm/versions/node/v18.3.0/bin/node',
   args = { vim.env.HOME .. '/.config/nvim/libs/vscode-php-debug/out/phpDebug.js' }
 }
 
@@ -78,6 +78,8 @@ dap.configurations.cs = {
 }
 
 -- PHP
+-- [TODO] install xdebug
+-- https://github.com/xdebug/vscode-php-debug#installation
 dap.configurations.php = {
   {
     type = 'php',
