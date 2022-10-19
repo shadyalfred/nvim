@@ -129,6 +129,6 @@ local config = {
 require('jdtls').start_or_attach(config)
 
 vim.keymap.set('n', '<Leader>oi', '<Cmd>lua require"jdtls".organize_imports()<CR>')
-vim.keymap.set('n', '<Leader>tc', '<Cmd>lua require"jdtls".test_class()<CR>')
+vim.keymap.set('n', '<Leader>tC', '<Cmd>lua require"jdtls".test_class()<CR>')
 vim.keymap.set('n', '<Leader>tm', '<Cmd>lua require"jdtls".test_nearest_method()<CR>')
 
