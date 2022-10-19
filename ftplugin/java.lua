@@ -1,6 +1,6 @@
 -- If you started neovim within `~/dev/xy/project-1` this would resolve to `project-1`
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
-local workspace_dir = '/home/shady/HDD/JavaWorkspace/' .. project_name
+local workspace_dir = vim.env.HOME .. '/.cache/JavaWorkspace/' .. project_name
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -35,12 +35,12 @@ end
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local bundles = {
-      vim.fn.glob('/home/shady/.config/nvim/libs/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-0.39.0.jar'),
+      vim.fn.glob(vim.env.HOME .. '/.config/nvim/libs/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-0.39.0.jar'),
 }
 
-vim.list_extend(bundles, vim.split(vim.fn.glob('/home/shady/.config/nvim/libs/vscode-java-test/server/*.jar'), '\n'))
+vim.list_extend(bundles, vim.split(vim.fn.glob(vim.env.HOME .. '/.config/nvim/libs/vscode-java-test/server/*.jar'), '\n'))
 
-require('jdtls').jol_path = '/home/shady/.config/nvim/libs/vscode-java-test/server/jol-cli.jar'
+require('jdtls').jol_path = vim.env.HOME .. '/.config/nvim/libs/vscode-java-test/server/jol-cli.jar'
 
 local extendedClientCapabilities = require('jdtls').extendedClientCapabilities
 
@@ -66,14 +66,14 @@ local config = {
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
 
     -- 💀
-    '-jar', '/home/shady/.config/nvim/libs/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
+    '-jar', vim.env.HOME .. '/.config/nvim/libs/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
          -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
          -- Must point to the                                                     Change this to
          -- eclipse.jdt.ls installation                                           the actual version
 
 
     -- 💀
-    '-configuration', '/home/shady/.config/nvim/libs/jdtls/config_linux',
+    '-configuration', vim.env.HOME .. '/.config/nvim/libs/jdtls/config_linux',
                     -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        ^^^^^^
                     -- Must point to the                      Change to one of `linux`, `win` or `mac`
                     -- eclipse.jdt.ls installation            Depending on your system.

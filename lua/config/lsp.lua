@@ -69,7 +69,7 @@ lspconfig.emmet_ls.setup({
     on_attach = on_attach,
     capabilities = capabilities,
     cmd = {
-      '/home/shady/.config/nvm/versions/node/v18.3.0/bin/emmet-ls',
+      vim.env.HOME .. '/.config/nvm/versions/node/v18.3.0/bin/emmet-ls',
       '--stdio'
     }
 })
@@ -85,7 +85,7 @@ lspconfig.tsserver.setup({
     on_attach = on_attach,
     capabilities = capabilities,
     cmd = {
-      '/home/shady/.config/nvm/versions/node/v18.3.0/bin/typescript-language-server', '--stdio'
+      vim.env.HOME .. '/.config/nvm/versions/node/v18.3.0/bin/typescript-language-server', '--stdio'
     }
 })
 
@@ -93,8 +93,11 @@ lspconfig.tsserver.setup({
 lspconfig.intelephense.setup({
   on_attach = on_attach,
   capabilities = capabilities,
+  init_options = {
+    globalStoragePath = vim.env.HOME .. '/.cache/nvim'
+  },
   cmd = {
-    '/home/shady/.config/nvm/versions/node/v18.3.0/bin/intelephense', '--stdio'
+    vim.env.HOME .. '/.config/nvm/versions/node/v18.3.0/bin/intelephense', '--stdio'
   }
 })
 
