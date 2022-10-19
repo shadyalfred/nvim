@@ -146,4 +146,15 @@ return require('packer').startup(function()
       }
     end,
   }
+
+  use({
+    'princejoogie/dir-telescope.nvim',
+    requires = { 'nvim-telescope/telescope.nvim' },
+    config = function()
+      require('dir-telescope').setup({
+        hidden = true,
+        respect_gitignore = true,
+      })
+    end,
+  })
 end)
