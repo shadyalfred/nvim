@@ -152,6 +152,8 @@ return require('packer').startup(function()
     requires =  'RishabhRD/popfix'
   }
 
+  use 'ellisonleao/carbon-now.nvim'
+
   -- langauge specific
   use {
     'simrat39/rust-tools.nvim',

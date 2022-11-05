@@ -45,4 +45,6 @@ require('config.orgmode')
 
 require('config.markdown-preview')
 
+require('config.carbon')
+
 require('config.neovide')
