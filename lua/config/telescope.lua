@@ -1,11 +1,22 @@
-require('telescope').setup()
+local telescope = require('telescope')
+
+telescope.setup({
+  extensions = {
+    media_files = {
+      filetypes = {'png', 'webp', 'jpg', 'jpeg', 'pdf'},
+      find_cmd = 'rg'
+    }
+  }
+})
+
+telescope.load_extension('media_files')
 
 function vim.getVisualSelection()
 	vim.cmd('noau normal! "vy"')
 	local text = vim.fn.getreg('v')
 	vim.fn.setreg('v', {})
 
-	text = string.gsub(text, "\n", "")
+	text = string.gsub(text, '\n', '')
 	if #text > 0 then
 		return text
 	else
@@ -14,7 +25,6 @@ function vim.getVisualSelection()
 end
 
 local tb = require('telescope.builtin')
-
 
 vim.api.nvim_set_keymap(
   'n',

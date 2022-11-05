@@ -23,6 +23,15 @@ return require('packer').startup(function()
     requires = 'nvim-lua/plenary.nvim'
   }
 
+  use {
+    'nvim-telescope/telescope-media-files.nvim',
+    requires = {
+      'nvim-lua/popup.nvim',
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim'
+    }
+  }
+
   use 'justinmk/vim-sneak'
   use 'easymotion/vim-easymotion'
 
