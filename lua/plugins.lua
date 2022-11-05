@@ -114,28 +114,6 @@ return require('packer').startup(function()
 
   use 'vim-scripts/ReplaceWithRegister'
 
-  -- langauge specific
-  use {
-    'simrat39/rust-tools.nvim',
-    requires = {
-      'neovim/nvim-lspconfig',
-      'nvim-lua/plenary.nvim',
-      'mfussenegger/nvim-dap',
-    }
-  }
-
-  use {
-    'ray-x/go.nvim',
-    requires = 'ray-x/guihua.lua'
-  }
-
-  use {
-    'iamcco/markdown-preview.nvim',
-    run = 'cd app && npm install',
-    setup = function() vim.g.mkdp_filetypes = { 'markdown' } end,
-    ft = { 'markdown' },
-  }
-
   use {
     'smjonas/live-command.nvim',
     config = function()
@@ -157,4 +135,31 @@ return require('packer').startup(function()
       })
     end,
   })
+
+  use {
+    'RishabhRD/nvim-cheat.sh',
+    requires =  'RishabhRD/popfix'
+  }
+
+  -- langauge specific
+  use {
+    'simrat39/rust-tools.nvim',
+    requires = {
+      'neovim/nvim-lspconfig',
+      'nvim-lua/plenary.nvim',
+      'mfussenegger/nvim-dap',
+    }
+  }
+
+  use {
+    'ray-x/go.nvim',
+    requires = 'ray-x/guihua.lua'
+  }
+
+  use {
+    'iamcco/markdown-preview.nvim',
+    run = 'cd app && npm install',
+    setup = function() vim.g.mkdp_filetypes = { 'markdown' } end,
+    ft = { 'markdown' },
+  }
 end)
