@@ -38,6 +38,7 @@ require('config.go')
 
 require('config.telescope')
 require('config.neogit')
+require('config.gitsigns')
 
 require('config.orgmode')
 

@@ -72,6 +72,8 @@ return require('packer').startup(function()
 
   use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
 
+  use 'lewis6991/gitsigns.nvim'
+
   use {
     'X3eRo0/dired.nvim',
     requires = 'MunifTanjim/nui.nvim'
