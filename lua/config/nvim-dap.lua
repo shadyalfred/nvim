@@ -80,14 +80,10 @@ dap.configurations.cs = {
 -- PHP
 dap.configurations.php = {
   {
-    type = 'php',
+    name    = 'Listen for Xdebug',
+    type    = 'php',
     request = 'launch',
-    name = 'Listen for Xdebug',
-    port = 9000,
-    hostname = '127.0.0.1',
-    serverSourceRoot = vim.fn.expand('%:p:h') .. '/',
-    localSourceRoot = vim.fn.expand('%:p:h') .. '/',
-    stopOnEntry = true
+    port    = 9000,
   }
 }
 

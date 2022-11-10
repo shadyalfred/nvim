@@ -33,8 +33,8 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 vim.o.signcolumn = 'yes'
 
 local function lsp_symbol(name, icon)
-    local hl = "DiagnosticSign" .. name
-    vim.fn.sign_define(hl, { text = icon, texthl = hl })
+  local hl = "DiagnosticSign" .. name
+  vim.fn.sign_define(hl, { text = icon, texthl = hl })
 end
 
 lsp_symbol("Error", "")
@@ -46,16 +46,28 @@ lsp_symbol("Hint", "")
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 
+-- HTML
+lspconfig.html.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
+-- CSS
+lspconfig.cssls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
 -- C++
 lspconfig.clangd.setup {
-    on_attach = on_attach,
-    capabilities = capabilities
+  on_attach = on_attach,
+  capabilities = capabilities
 }
 
 -- Rust
 lspconfig.rust_analyzer.setup {
-    on_attach = on_attach,
-    capabilities = capabilities
+  on_attach = on_attach,
+  capabilities = capabilities
 }
 
 -- C#
@@ -66,27 +78,27 @@ lspconfig.csharp_ls.setup{
 
 -- emmet
 lspconfig.emmet_ls.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-    cmd = {
-      vim.env.NVM_BIN .. '/emmet-ls',
-      '--stdio'
-    }
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = {
+    vim.env.NVM_BIN .. '/emmet-ls',
+    '--stdio'
+  }
 })
 
 -- golang
 lspconfig.gopls.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
+  on_attach = on_attach,
+  capabilities = capabilities,
 })
 
 -- TypeScript
 lspconfig.tsserver.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-    cmd = {
-      vim.env.NVM_BIN .. '/typescript-language-server', '--stdio'
-    }
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = {
+    vim.env.NVM_BIN .. '/typescript-language-server', '--stdio'
+  }
 })
 
 -- PHP
