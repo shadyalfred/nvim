@@ -48,4 +48,6 @@ require('config.markdown-preview')
 
 require('config.carbon')
 
+require('config.colorful-winsep')
+
 require('config.neovide')

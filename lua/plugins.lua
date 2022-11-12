@@ -159,6 +159,8 @@ return require('packer').startup(function()
 
   use 'ellisonleao/carbon-now.nvim'
 
+ use 'nvim-zh/colorful-winsep.nvim'
+
   -- langauge specific
   use {
     'simrat39/rust-tools.nvim',
