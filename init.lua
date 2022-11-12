@@ -5,6 +5,7 @@ require('guess-indent').setup {}
 require('config.nvim-tree')
 
 require('config.nvim-treesitter')
+require('config.nvim-treesitter-context')
 
 require('orgmode').setup_ts_grammar()
 require('orgmode').setup {}

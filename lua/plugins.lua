@@ -97,6 +97,11 @@ return require('packer').startup(function()
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
   }
 
+  use {
+    'nvim-treesitter/nvim-treesitter-context',
+    requires = 'nvim-treesitter/nvim-treesitter',
+  }
+
   use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
 
   use {
