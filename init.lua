@@ -13,10 +13,13 @@ require('orgmode').setup {}
 require('Comment').setup()
 
 require('config')
+
 require('config.sneak')
+
 require('config.easymotion')
 
 require('config.lualine')
+
 require('config.tabby')
 
 require('config.dired')
@@ -26,13 +29,16 @@ require('config.align')
 require('config.maximize')
 
 require('config.nvim-cmp')
+
 require('config.lsp')
-require('config.trouble')
+
 require('config.nvim-spectre')
 
 require('config.nvim-ufo')
 
 require('config.nvim-dap')
+
+require('config.trouble')
 
 require('config.rust-tools')
 require('config.go')

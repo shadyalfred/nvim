@@ -74,12 +74,16 @@ return require('packer').startup(function()
   } 
 
   use 'mfussenegger/nvim-dap'
+
   use {
     'rcarriga/nvim-dap-ui',
     requires = { 'mfussenegger/nvim-dap' }
   }
 
-  use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+  use {
+    'TimUntersberger/neogit',
+    requires = 'nvim-lua/plenary.nvim'
+  }
 
   use 'lewis6991/gitsigns.nvim'
 
@@ -88,9 +92,7 @@ return require('packer').startup(function()
     requires = 'MunifTanjim/nui.nvim'
   }
 
-  use {
-    'numToStr/Comment.nvim',
-  }
+  use 'numToStr/Comment.nvim'
 
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -102,23 +104,18 @@ return require('packer').startup(function()
     requires = 'nvim-treesitter/nvim-treesitter',
   }
 
-  use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
-
   use {
-    'nvim-orgmode/orgmode'
+    'kevinhwang91/nvim-ufo',
+    requires = 'kevinhwang91/promise-async'
   }
 
-  use {
-    'famiu/bufdelete.nvim'
-  }
+  use 'nvim-orgmode/orgmode'
 
-  use {
-    'cohama/lexima.vim'
-  }
+  use 'famiu/bufdelete.nvim'
 
-  use {
-    'caenrique/nvim-maximize-window-toggle'
-  }
+  use 'cohama/lexima.vim'
+
+  use 'caenrique/nvim-maximize-window-toggle'
 
   use {
     'windwp/nvim-spectre',
@@ -159,7 +156,7 @@ return require('packer').startup(function()
 
   use 'ellisonleao/carbon-now.nvim'
 
- use 'nvim-zh/colorful-winsep.nvim'
+  use 'nvim-zh/colorful-winsep.nvim'
 
   -- langauge specific
   use {
