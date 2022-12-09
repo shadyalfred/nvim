@@ -26,7 +26,7 @@ rt.setup({
       vim.keymap.set('n', '<Leader>D', vim.lsp.buf.type_definition, bufopts)
       vim.keymap.set('n', '<Leader>sr', vim.lsp.buf.rename, bufopts)
       vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-      vim.keymap.set('n', '<Leader>j+', vim.lsp.buf.formatting, bufopts)
+      vim.keymap.set('n', '<Leader>j+', function() vim.lsp.buf.format { async = true } end, bufopts)
 
       -- Hover actions
       vim.keymap.set({ 'v', 'n' }, 'K', rt.hover_actions.hover_actions, { buffer = bufnr })
