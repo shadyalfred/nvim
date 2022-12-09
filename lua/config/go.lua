@@ -7,3 +7,5 @@ require('go').setup({
     dap_debug_keymap = false,
     trouble = true
 })
+
+vim.keymap.set('n', '<Leader>oi', '<Cmd> GoImport <CR>', { noremap = true, silent = true })
