@@ -100,14 +100,6 @@ local config = {
         -- The `name` is NOT arbitrary, but must match one of the elements from `enum ExecutionEnvironment` in the link above
         runtimes = {
           {
-            name = "JavaSE-11",
-            path = "/usr/lib/jvm/java-11-openjdk/",
-          },
-          {
-            name = "JavaSE-17",
-            path = "/usr/lib/jvm/java-17-openjdk/",
-          },
-          {
             name = "JavaSE-19",
             path = "/usr/lib/jvm/java-19-openjdk/",
           },
