@@ -100,7 +100,7 @@ vim.keymap.set(
         local Job = require'plenary.job'
 
         Job:new({
-            command = 'alacritty',
+            command = 'kitty',
             cwd = vim.fn.getcwd(),
         }):start()
     end
