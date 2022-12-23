@@ -40,6 +40,9 @@ dap.configurations.cpp = {
 -- Rust
 dap.configurations.rust = {
   {
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/', 'file')
+    end,
     name = 'Rust debug',
     type = 'codelldb',
     request = 'launch',

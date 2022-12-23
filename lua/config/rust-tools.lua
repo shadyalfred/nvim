@@ -1,6 +1,6 @@
 local rt = require('rust-tools')
 
-local extension_path = vim.env.HOME .. '/Apps/vadimcn.vscode-lldb-1.7.4/extension/'
+local extension_path = vim.env.HOME .. '/.config/nvim/libs/vadimcn.vscode-lldb-1.7.4/extension/'
 local codelldb_path = extension_path .. 'adapter/codelldb'
 local liblldb_path = extension_path .. 'lldb/lib/liblldb.so'
 
@@ -27,6 +27,7 @@ rt.setup({
       vim.keymap.set('n', '<Leader>sr', vim.lsp.buf.rename, bufopts)
       vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
       vim.keymap.set('n', '<Leader>j+', function() vim.lsp.buf.format { async = true } end, bufopts)
+			vim.keymap.set('n', '<Leader>e', vim.diagnostic.open_float, bufopts)
 
       -- Hover actions
       vim.keymap.set({ 'v', 'n' }, 'K', rt.hover_actions.hover_actions, { buffer = bufnr })
