@@ -109,11 +109,10 @@ return require('packer').startup(function()
     requires = 'kevinhwang91/promise-async'
   }
 
-  use 'nvim-orgmode/orgmode'
-
   use 'famiu/bufdelete.nvim'
 
-  use 'cohama/lexima.vim'
+  -- use 'cohama/lexima.vim'
+  use 'm4xshen/autoclose.nvim'
 
   use 'caenrique/nvim-maximize-window-toggle'
 
