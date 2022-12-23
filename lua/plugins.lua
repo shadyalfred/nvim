@@ -111,7 +111,6 @@ return require('packer').startup(function()
 
   use 'famiu/bufdelete.nvim'
 
-  -- use 'cohama/lexima.vim'
   use 'm4xshen/autoclose.nvim'
 
   use 'caenrique/nvim-maximize-window-toggle'

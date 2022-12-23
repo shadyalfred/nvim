@@ -2,13 +2,12 @@ require('plugins')
 
 require('guess-indent').setup {}
 
+require('config.autoclose')
+
 require('config.nvim-tree')
 
 require('config.nvim-treesitter')
 require('config.nvim-treesitter-context')
-
-require('orgmode').setup_ts_grammar()
-require('orgmode').setup {}
 
 require('Comment').setup()
 
@@ -47,8 +46,6 @@ require('config.telescope')
 
 require('config.neogit')
 require('config.gitsigns')
-
-require('config.orgmode')
 
 require('config.markdown-preview')
 
