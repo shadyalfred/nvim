@@ -13,9 +13,7 @@ require('Comment').setup()
 
 require('config')
 
-require('config.sneak')
-
-require('config.easymotion')
+require('config.hop')
 
 require('config.lualine')
 

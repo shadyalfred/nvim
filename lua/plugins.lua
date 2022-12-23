@@ -32,8 +32,10 @@ return require('packer').startup(function()
     }
   }
 
-  use 'justinmk/vim-sneak'
-  use 'easymotion/vim-easymotion'
+  use {
+    'phaazon/hop.nvim',
+    branch = 'v2',
+  }
 
   use {
     'kyazdani42/nvim-tree.lua',
