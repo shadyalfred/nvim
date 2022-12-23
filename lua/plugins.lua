@@ -157,6 +157,11 @@ return require('packer').startup(function()
 
   use 'nvim-zh/colorful-winsep.nvim'
 
+  use {
+    'shortcuts/no-neck-pain.nvim',
+    tag = '*'
+  }
+
   -- langauge specific
   use {
     'simrat39/rust-tools.nvim',
