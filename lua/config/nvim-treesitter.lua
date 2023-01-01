@@ -1,4 +1,4 @@
-require('nvim-treesitter').setup {
+require('nvim-treesitter.configs').setup {
   ensure_installed = {
     'lua',
     'html',
@@ -10,6 +10,7 @@ require('nvim-treesitter').setup {
     'java',
     'json',
     'markdown',
+    'markdown_inline',
     'org',
     'toml',
     'yaml',
@@ -18,10 +19,13 @@ require('nvim-treesitter').setup {
 
   highlight = {
     enable = true,
-    disable = {}
   },
 
-  auto_install = true
+  indent = {
+    enable = true
+  },
+
+  auto_install = true,
 }
 
 vim.wo.foldmethod = 'manual'
