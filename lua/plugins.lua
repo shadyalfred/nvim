@@ -163,6 +163,13 @@ return require('packer').startup(function()
     tag = '*'
   }
 
+  use {
+    'vimwiki/vimwiki',
+    config = require('config.vimwiki')
+  }
+
+  use 'godlygeek/tabular'
+
   -- langauge specific
   use {
     'simrat39/rust-tools.nvim',
