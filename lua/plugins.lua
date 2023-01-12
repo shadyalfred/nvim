@@ -38,7 +38,7 @@ return require('packer').startup(function()
   }
 
   use {
-    'kyazdani42/nvim-tree.lua',
+    'nvim-tree/nvim-tree.lua',
     requires = {
       'kyazdani42/nvim-web-devicons',
     }
@@ -165,7 +165,9 @@ return require('packer').startup(function()
 
   use {
     'vimwiki/vimwiki',
-    config = require('config.vimwiki')
+    config = function()
+      require('config.vimwiki')
+    end
   }
 
   use 'godlygeek/tabular'
