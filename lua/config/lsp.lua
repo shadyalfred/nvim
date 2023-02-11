@@ -33,15 +33,11 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 -- fix gutter width madness
 vim.o.signcolumn = 'yes'
 
-local function lsp_symbol(name, icon)
-  local hl = "DiagnosticSign" .. name
-  vim.fn.sign_define(hl, { text = icon, texthl = hl })
+local signs = { Error = "", Warn = "", Hint = "", Info = "" }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
-
-lsp_symbol("Error", "")
-lsp_symbol("Warn", "")
-lsp_symbol("Information", "")
-lsp_symbol("Hint", "")
 
 -- Keybindings
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
