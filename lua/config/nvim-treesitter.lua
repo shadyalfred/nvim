@@ -15,7 +15,12 @@ require('nvim-treesitter.configs').setup {
     'toml',
     'yaml',
   },
+
   sync_install = false,
+
+  autotag = {
+    enable = true
+  },
 
   highlight = {
     enable = true,
@@ -29,8 +34,8 @@ require('nvim-treesitter.configs').setup {
   auto_install = true,
 }
 
-vim.wo.foldmethod = 'manual'
--- vim.wo.foldexpr   = 'nvim_treesitter#foldexpr()'
+vim.wo.foldmethod = 'expr'
+vim.wo.foldexpr   = 'nvim_treesitter#foldexpr()'
 
 -- vim.api.nvim_create_autocmd({'BufEnter','BufAdd','BufNew','BufNewFile','BufWinEnter'}, {
 --   group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
