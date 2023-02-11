@@ -2,8 +2,6 @@ require('plugins')
 
 require('guess-indent').setup {}
 
-require('config.autoclose')
-
 require('config.nvim-tree')
 
 require('config.nvim-treesitter')

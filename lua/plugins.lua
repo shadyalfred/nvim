@@ -3,9 +3,27 @@ return require('packer').startup(function()
 
   use 'nvim-lua/plenary.nvim'
 
-  use 'tpope/vim-surround'
   use 'tpope/vim-repeat'
   use 'Vonr/align.nvim'
+
+  use {
+    'kylechui/nvim-surround',
+    tag = '*',
+    config = function()
+      require('nvim-surround').setup()
+    end
+  }
+
+  use {
+    'windwp/nvim-autopairs',
+    config = function()
+      require('nvim-autopairs').setup({
+        disable_filetype = { 'TelescopePrompt', 'text', 'markdown', },
+        disable_in_macro = true,
+        disable_in_visualblock = true
+      })
+    end
+  }
 
   use 'NMAC427/guess-indent.nvim'
 
@@ -101,6 +119,8 @@ return require('packer').startup(function()
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
   }
 
+  use 'windwp/nvim-ts-autotag'
+
   use {
     'nvim-treesitter/nvim-treesitter-context',
     requires = 'nvim-treesitter/nvim-treesitter',
@@ -112,8 +132,6 @@ return require('packer').startup(function()
   }
 
   use 'famiu/bufdelete.nvim'
-
-  use 'm4xshen/autoclose.nvim'
 
   use 'caenrique/nvim-maximize-window-toggle'
 
