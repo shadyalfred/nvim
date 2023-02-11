@@ -4,6 +4,9 @@ local extension_path = vim.env.HOME .. '/.config/nvim/libs/vadimcn.vscode-lldb-1
 local codelldb_path = extension_path .. 'adapter/codelldb'
 local liblldb_path = extension_path .. 'lldb/lib/liblldb.so'
 
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 rt.setup({
   tools = {
     inlay_hints = {
@@ -39,6 +42,7 @@ rt.setup({
       vim.keymap.set({ 'n', 'v' }, '<M-k>', '<Cmd> RustMoveItemUp<CR>')
       vim.keymap.set({ 'n', 'v' }, '<M-j>', '<Cmd> RustMoveItemDown<CR>')
     end,
+    capabilities = capabilities
   },
   dap = {
     adapter = require('rust-tools.dap').get_codelldb_adapter(
