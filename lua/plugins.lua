@@ -190,6 +190,22 @@ return require('packer').startup(function()
 
   use 'godlygeek/tabular'
 
+  use {
+    'mcookly/rosetta.nvim',
+    config = function()
+      require('rosetta').setup({
+        keyboard = {
+          enabled = false,
+        },
+      })
+    end
+  }
+
+  use {
+    'kana/vim-textobj-line',
+    requires = 'kana/vim-textobj-user'
+  }
+
   -- langauge specific
   use {
     'simrat39/rust-tools.nvim',
