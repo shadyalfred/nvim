@@ -1,6 +1,6 @@
 local cmp = require'cmp'
 
-vim.o.completeopt = 'menu,menuone,noinsert,noselect,preview'
+vim.o.completeopt = 'menu,menuone,noselect,preview'
 
 cmp.setup({
     preselect = cmp.PreselectMode.None,
@@ -14,14 +14,14 @@ cmp.setup({
         end,
     },
     completion = {
-        completeopt = 'menu,menuone,noinsert,noselect,preview'
+        completeopt = 'menu,menuone,noselect,preview'
     },
     window = {
         completion = {
             winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
             col_offset = -3,
             side_padding = 0,
-            completeopt = 'menu,menuone,noinsert,noselect,preview'
+            completeopt = 'menu,menuone,noselect,preview'
         }
         -- documentation = cmp.config.window.bordered(),
     },
