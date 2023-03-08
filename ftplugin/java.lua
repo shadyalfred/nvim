@@ -29,7 +29,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<Leader>sr', vim.lsp.buf.rename, bufopts)
   vim.keymap.set({ 'n', 'v' }, '<Leader>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<Leader>j+', vim.lsp.buf.formatting, bufopts)
+  vim.keymap.set('n', '<Leader>j+', vim.lsp.buf.format({ async = true }), bufopts)
 end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())

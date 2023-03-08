@@ -23,7 +23,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<Leader>sr', vim.lsp.buf.rename, bufopts)
   vim.keymap.set({ 'n', 'v' }, '<Leader>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<Leader>j+', vim.lsp.buf.formatting, bufopts)
+  vim.keymap.set('n', '<Leader>j+', function() vim.lsp.buf.format({ async = true }) end, bufopts)
   vim.keymap.set('n', '<Leader>e', vim.diagnostic.open_float, bufopts)
 end
 
@@ -96,6 +96,12 @@ lspconfig.tsserver.setup({
   cmd = {
     vim.env.NVM_BIN .. '/typescript-language-server', '--stdio'
   }
+})
+
+-- VueJS
+lspconfig.vuels.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
 })
 
 -- PHP
