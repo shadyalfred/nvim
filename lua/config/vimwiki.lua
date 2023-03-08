@@ -1,5 +1,6 @@
 vim.g.vimwiki_list = {{
     path = vim.env.HOME .. '/HDD/Obsidian',
+    index = 'Index',
     syntax = 'markdown',
     ext = '.md'
 }}
