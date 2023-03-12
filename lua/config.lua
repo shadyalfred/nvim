@@ -125,3 +125,7 @@ if vim.env.TERM == 'xterm' then
 else
     vim.cmd[[colorscheme tokyonight]]
 end
+
+if vim.g.goneovim then
+    vim.cmd[[set linespace=20]]
+end

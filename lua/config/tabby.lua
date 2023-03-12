@@ -16,13 +16,16 @@ local function tab_label(tabid, active)
   return string.format(' %s %d: %s %s', icon, number, name, modifiedIcon)
 end
 
+local left_sep_glyph = vim.g.goneovim and '' or ''
+local right_sep_glyph = vim.g.goneovim and '' or ''
+
 local tabline = {
   hl = 'lualine_c_normal',
   layout = 'tab_only',
   head = {
-    { '', hl = { fg = hl_tabline.bg, bg = hl_tabline_fill.bg } },
+    { left_sep_glyph, hl = { fg = hl_tabline.bg, bg = hl_tabline_fill.bg } },
     { '  ', hl = { fg = hl_tabline.fg, bg = hl_tabline.bg } },
-    { '', hl = { fg = hl_tabline.bg, bg = hl_tabline_fill.bg } },
+    { right_sep_glyph, hl = { fg = hl_tabline.bg, bg = hl_tabline_fill.bg } },
   },
   active_tab = {
     label = function(tabid)
@@ -31,8 +34,8 @@ local tabline = {
         hl = { fg = hl_tabline_sel.fg, bg = hl_tabline_sel.bg, style = 'bold' },
       }
     end,
-    left_sep = { '', hl = { fg = hl_tabline_sel.bg, bg = hl_tabline_fill.bg } },
-    right_sep = { '', hl = { fg = hl_tabline_sel.bg, bg = hl_tabline_fill.bg } },
+    left_sep = { left_sep_glyph, hl = { fg = hl_tabline_sel.bg, bg = hl_tabline_fill.bg } },
+    right_sep = { right_sep_glyph, hl = { fg = hl_tabline_sel.bg, bg = hl_tabline_fill.bg } },
   },
   inactive_tab = {
     label = function(tabid)
