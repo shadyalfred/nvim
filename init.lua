@@ -17,8 +17,6 @@ require('config.lualine')
 
 require('config.tabby')
 
-require('config.dired')
-
 require('config.align')
 
 require('config.maximize')

@@ -1,3 +1,8 @@
+-- Set `cwd` to the argument passed to nvim command
+if vim.fn.isdirectory(vim.v.argv[2]) == 1 then
+  vim.api.nvim_set_current_dir(vim.v.argv[2])
+end
+
 -- Set default clipboard to the system wide clipboard
 vim.o.clipboard = 'unnamedplus'
 vim.o.pastetoggle = '<Space>p'

@@ -108,8 +108,15 @@ return require('packer').startup(function()
   use 'lewis6991/gitsigns.nvim'
 
   use {
-    'X3eRo0/dired.nvim',
-    requires = 'MunifTanjim/nui.nvim'
+    'nvim-telescope/telescope-file-browser.nvim',
+    requires = {
+      'nvim-telescope/telescope.nvim',
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons'
+    },
+    config = function()
+      require('config.telescope-file-browser')
+    end
   }
 
   use 'numToStr/Comment.nvim'
