@@ -67,6 +67,12 @@ lspconfig.rust_analyzer.setup {
   capabilities = capabilities
 }
 
+-- Zig
+require'lspconfig'.zls.setup{
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
 -- C#
 lspconfig.csharp_ls.setup{
   on_attach = on_attach,
