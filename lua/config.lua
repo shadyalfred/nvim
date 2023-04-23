@@ -58,7 +58,7 @@ vim.api.nvim_set_keymap('', '<Leader>wd', '<C-w>c', { noremap = true })
 
 -- Toggle wordwarp
 vim.keymap.set(
-    'n',
+    { 'n', 'v' },
     '<Leader>tw',
     function()
         if (vim.wo.wrap and vim.wo.linebreak) then
@@ -119,10 +119,14 @@ vim.api.nvim_set_keymap('n', '<Space>fs', ':w<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>sc', ':nohlsearch<CR>', { noremap = true, silent = true })
 
 -- buffers
-vim.keymap.set('n', '[b', '<Cmd>bprevious<CR>')
-vim.keymap.set('n', ']b', '<Cmd>bnext<CR>')
-vim.keymap.set('n', '<Leader>bp', '<Cmd>bprevious<CR>')
-vim.keymap.set('n', '<Leader>bn', '<Cmd>bnext<CR>')
+vim.keymap.set({ 'v', 'n' }, '[b', '<Cmd>bprevious<CR>')
+vim.keymap.set({ 'v', 'n' }, ']b', '<Cmd>bnext<CR>')
+vim.keymap.set({ 'v', 'n' }, '<Leader>bp', '<Cmd>bprevious<CR>')
+vim.keymap.set({ 'v', 'n' }, '<Leader>bn', '<Cmd>bnext<CR>')
+
+-- Quit
+vim.keymap.set({ 'n', 'v' }, '<Leader>qq', '<Cmd>qall<CR>')
+vim.keymap.set({ 'n', 'v' }, '<Leader>qQ', '<Cmd>qall!<CR>')
 
 -- Theme
 if vim.env.TERM == 'xterm' then
