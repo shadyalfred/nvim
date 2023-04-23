@@ -10,6 +10,7 @@ telescope.setup({
 })
 
 telescope.load_extension('media_files')
+telescope.load_extension('fzf')
 
 function vim.getVisualSelection()
 	vim.cmd('noau normal! "vy"')
