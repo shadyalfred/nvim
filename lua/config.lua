@@ -40,6 +40,8 @@ vim.o.hidden = true
 vim.o.splitbelow = true
 vim.o.splitright = true
 
+vim.o.splitkeep = 'screen'
+
 -- Fold level
 vim.o.foldlevel = 99
 
