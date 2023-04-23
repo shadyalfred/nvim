@@ -71,6 +71,29 @@ vim.keymap.set(
     end
 )
 
+-- Toggle j/k respect wrapped lines
+vim.keymap.set(
+    { 'n', 'v' },
+    '<Leader>tj',
+    function()
+        local isFound = false
+
+        for k, mapping in pairs(vim.api.nvim_get_keymap('n')) do
+            if mapping['lhs'] == 'j' then
+                isFound = true
+                break
+            end
+        end
+
+        if isFound then
+            vim.keymap.del({ 'n', 'v' }, 'j')
+            vim.keymap.del({ 'n', 'v' }, 'k')
+        else
+            vim.keymap.set({ 'n', 'v' }, 'j', 'gj')
+            vim.keymap.set({ 'n', 'v' }, 'k', 'gk')
+        end
+    end
+)
 
 -- Close buffer
 vim.keymap.set(
