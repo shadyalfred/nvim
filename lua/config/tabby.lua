@@ -16,8 +16,8 @@ local function tab_label(tabid, active)
   return string.format(' %s %d: %s %s', icon, number, name, modifiedIcon)
 end
 
-local left_sep_glyph = vim.g.goneovim and '' or ''
-local right_sep_glyph = vim.g.goneovim and '' or ''
+local left_sep_glyph = ''
+local right_sep_glyph = ''
 
 local tabline = {
   hl = 'lualine_c_normal',
