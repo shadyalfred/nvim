@@ -151,6 +151,14 @@ vim.keymap.set({ 'v', 'n' }, '<Leader>bn', '<Cmd>bnext<CR>')
 vim.keymap.set({ 'n', 'v' }, '<Leader>qq', '<Cmd>qall<CR>')
 vim.keymap.set({ 'n', 'v' }, '<Leader>qQ', '<Cmd>qall!<CR>')
 
+-- list
+vim.opt.listchars:remove({ 'trail' })
+vim.opt.listchars:append({ space = '·' })
+vim.opt.listchars:append({ eol = '↵' })
+vim.opt.listchars:append({ tab = '--⇥' })
+
+vim.opt.list = true
+
 -- Theme
 if vim.env.TERM == 'xterm' then
     vim.cmd[[colorscheme tokyonight-day]]
