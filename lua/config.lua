@@ -171,3 +171,17 @@ end
 if vim.g.goneovim then
   vim.cmd[[set linespace=20]]
 end
+
+-- use rg for vimgrep
+vim.o.grepprg = 'rg --vimgrep --no-heading --smart-case'
+vim.cmd[[
+" create a self-clearing autocommand group called 'AutoOpenQuicklistGrep'
+augroup AutoOpenQuicklistGrep
+    " clear all autocommands in this group
+    autocmd!
+
+    " do :cwindow if the quickfix command doesn't start
+    " with a 'l' (:grep, :make, etc.)
+    autocmd QuickFixCmdPost grep copen 5
+augroup END
+]]
