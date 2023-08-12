@@ -14,11 +14,11 @@ vim.wo.number = true
 vim.api.nvim_command('set nocompatible')
 vim.api.nvim_command('set formatoptions-=cro')
 vim.api.nvim_create_autocmd(
-    'FileType',
-    {
-        pattern = { '*' },
-        command = [[set formatoptions-=cro]]
-    }
+  'FileType',
+  {
+    pattern = { '*' },
+    command = [[set formatoptions-=cro]]
+  }
 )
 
 -- Highlight current line
@@ -58,55 +58,55 @@ vim.api.nvim_set_keymap('', '<Leader>wd', '<C-w>c', { noremap = true })
 
 -- Toggle wordwarp
 vim.keymap.set(
-    { 'n', 'v' },
-    '<Leader>tw',
-    function()
-        if (vim.wo.wrap and vim.wo.linebreak) then
-            vim.wo.wrap      = false
-            vim.wo.linebreak = false
-        else
-            vim.wo.wrap      = true
-            vim.wo.linebreak = true
-        end
+  { 'n', 'v' },
+  '<Leader>tw',
+  function()
+    if (vim.wo.wrap and vim.wo.linebreak) then
+      vim.wo.wrap      = false
+      vim.wo.linebreak = false
+    else
+      vim.wo.wrap      = true
+      vim.wo.linebreak = true
     end
+  end
 )
 
 -- Toggle j/k respect wrapped lines
 vim.keymap.set(
-    { 'n', 'v' },
-    '<Leader>tj',
-    function()
-        local isFound = false
+  { 'n', 'v' },
+  '<Leader>tj',
+  function()
+    local isFound = false
 
-        for k, mapping in pairs(vim.api.nvim_get_keymap('n')) do
-            if mapping['lhs'] == 'j' then
-                isFound = true
-                break
-            end
-        end
-
-        if isFound then
-            vim.keymap.del({ 'n', 'v' }, 'j')
-            vim.keymap.del({ 'n', 'v' }, 'k')
-        else
-            vim.keymap.set({ 'n', 'v' }, 'j', 'gj')
-            vim.keymap.set({ 'n', 'v' }, 'k', 'gk')
-        end
+    for k, mapping in pairs(vim.api.nvim_get_keymap('n')) do
+      if mapping['lhs'] == 'j' then
+        isFound = true
+        break
+      end
     end
+
+    if isFound then
+      vim.keymap.del({ 'n', 'v' }, 'j')
+      vim.keymap.del({ 'n', 'v' }, 'k')
+    else
+      vim.keymap.set({ 'n', 'v' }, 'j', 'gj')
+      vim.keymap.set({ 'n', 'v' }, 'k', 'gk')
+    end
+  end
 )
 
 -- Close buffer
 vim.keymap.set(
-    'n',
-    '<Leader>bd',
-    function()
-        if vim.api.nvim_buf_get_option(0, 'buftype') == 'terminal' then
-            vim.api.nvim_buf_delete(0, { force = true })
-        else
-            require('bufdelete').bufdelete(0, false)
-        end
-    end,
-    { noremap = true, silent = true }
+  'n',
+  '<Leader>bd',
+  function()
+    if vim.api.nvim_buf_get_option(0, 'buftype') == 'terminal' then
+      vim.api.nvim_buf_delete(0, { force = true })
+    else
+      require('bufdelete').bufdelete(0, false)
+    end
+  end,
+  { noremap = true, silent = true }
 )
 
 vim.api.nvim_set_keymap('n', '<Leader>bD', ':bd!<CR>', { noremap = true, silent = true })
@@ -124,16 +124,16 @@ vim.cmd[[ au TermOpen * setlocal modifiable ]]
 vim.cmd[[ au TermOpen * if &buftype ==# 'terminal' | resize 8 | endif ]]
 
 vim.keymap.set(
-    'n',
-    '<Leader>"',
-    function()
-        local Job = require'plenary.job'
+  'n',
+  '<Leader>"',
+  function()
+    local Job = require'plenary.job'
 
-        Job:new({
-            command = 'kitty',
-            cwd = vim.fn.getcwd(),
-        }):start()
-    end
+    Job:new({
+      command = 'kitty',
+      cwd = vim.fn.getcwd(),
+    }):start()
+  end
 )
 --
 
