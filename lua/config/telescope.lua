@@ -41,6 +41,13 @@ vim.api.nvim_set_keymap(
   { noremap = true, silent = true }
 )
 
+vim.api.nvim_set_keymap(
+  'n',
+  '<Leader>.',
+  '<cmd>Telescope find_files<cr>',
+  { noremap = true, silent = true }
+)
+
 vim.keymap.set(
   'v',
   '<Leader>pf',
