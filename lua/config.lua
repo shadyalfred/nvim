@@ -161,13 +161,13 @@ vim.opt.list = true
 
 -- Theme
 if vim.env.TERM == 'xterm' then
-    vim.cmd[[colorscheme tokyonight-day]]
-    vim.cmd[[set termbidi]]
-    vim.cmd[[set arabic]]
+  vim.cmd[[colorscheme tokyonight-day]]
+  vim.cmd[[set termbidi]]
+  vim.cmd[[set arabic]]
 else
-    vim.cmd[[colorscheme tokyonight]]
+  vim.cmd[[colorscheme tokyonight]]
 end
 
 if vim.g.goneovim then
-    vim.cmd[[set linespace=20]]
+  vim.cmd[[set linespace=20]]
 end
