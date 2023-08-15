@@ -1,4 +1,12 @@
 require('nvim-treesitter.configs').setup {
+  sync_install = false,
+
+  auto_install = true,
+
+  autotag = {
+    enable = true
+  },
+
   ensure_installed = {
     'lua',
     'html',
@@ -16,12 +24,6 @@ require('nvim-treesitter.configs').setup {
     'yaml',
   },
 
-  sync_install = false,
-
-  autotag = {
-    enable = true
-  },
-
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = { 'markdown' }
@@ -31,7 +33,15 @@ require('nvim-treesitter.configs').setup {
     enable = true
   },
 
-  auto_install = true,
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection    = '<CR>',
+      scope_incremental = '<CR>',
+      node_incremental  = '<TAB>',
+      node_decremental  = '<S-TAB>',
+    },
+  }
 }
 
 vim.wo.foldmethod = 'expr'
