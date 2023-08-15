@@ -1,1 +1,2 @@
-vim.keymap.set('n', '<Leader>gg', '<Cmd>:Neogit<CR>')
+require('neogit').setup {}
+vim.keymap.set('n', '<Leader>gg', '<Cmd>Neogit<CR>')

@@ -109,7 +109,14 @@ return require('packer').startup(function()
 
   use {
     'TimUntersberger/neogit',
-    requires = 'nvim-lua/plenary.nvim'
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim', -- optional
+      'sindrets/diffview.nvim',        -- optional
+    },
+    config = function()
+      require('config.neogit')
+    end
   }
 
   use 'lewis6991/gitsigns.nvim'
