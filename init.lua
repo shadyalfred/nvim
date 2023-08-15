@@ -11,8 +11,6 @@ require('Comment').setup()
 
 require('config')
 
-require('config.hop')
-
 require('config.lualine')
 
 require('config.tabby')

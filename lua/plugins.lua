@@ -56,8 +56,10 @@ return require('packer').startup(function()
   }
 
   use {
-    'phaazon/hop.nvim',
-    branch = 'v2',
+    'folke/flash.nvim',
+    config = function()
+      require('config.flash')
+    end
   }
 
   use {
