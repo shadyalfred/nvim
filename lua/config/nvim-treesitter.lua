@@ -36,10 +36,24 @@ require('nvim-treesitter.configs').setup {
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection    = '<CR>',
-      scope_incremental = '<CR>',
-      node_incremental  = '<TAB>',
-      node_decremental  = '<S-TAB>',
+      init_selection    = 'gnn',
+      scope_incremental = '<CR>',    -- grc
+      node_incremental  = '<TAB>',   -- grn 
+      node_decremental  = '<S-TAB>', -- grm
+    },
+  },
+
+  textobjects = {
+    select = {
+      enable = true,
+
+      keymaps = {
+        -- You can use the capture groups defined in textobjects.scm
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+      },
     },
   }
 }
