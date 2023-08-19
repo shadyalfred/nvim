@@ -3,6 +3,31 @@ return require('packer').startup(function()
 
   use 'nvim-lua/plenary.nvim'
 
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = function()
+      require('nvim-treesitter.install')
+        .update({ with_sync = true })
+    end,
+    config = function()
+      require('config.nvim-treesitter')
+    end
+  }
+
+  use {
+    'nvim-treesitter/nvim-treesitter-context',
+    requires = 'nvim-treesitter/nvim-treesitter',
+    config = function()
+      require('config.nvim-treesitter-context')
+    end
+  }
+
+  use {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    after = 'nvim-treesitter',
+    requires = 'nvim-treesitter/nvim-treesitter',
+  }
+
   use 'tpope/vim-repeat'
   use 'Vonr/align.nvim'
 
@@ -135,17 +160,7 @@ return require('packer').startup(function()
 
   use 'numToStr/Comment.nvim'
 
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
-  }
-
   use 'windwp/nvim-ts-autotag'
-
-  use {
-    'nvim-treesitter/nvim-treesitter-context',
-    requires = 'nvim-treesitter/nvim-treesitter',
-  }
 
   use {
     'kevinhwang91/nvim-ufo',
