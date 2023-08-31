@@ -53,8 +53,8 @@ vim.wo.linebreak = true
 vim.api.nvim_command('au TextYankPost * silent! lua vim.highlight.on_yank()')
 
 -- Mappings
-vim.api.nvim_set_keymap('', '<Leader>w', '<C-w>', { noremap = true })
-vim.api.nvim_set_keymap('', '<Leader>wd', '<C-w>c', { noremap = true })
+vim.keymap.set('', '<Leader>w', '<C-w>', { noremap = true })
+vim.keymap.set('', '<Leader>wd', '<C-w>c', { noremap = true })
 
 -- Toggle wordwarp
 vim.keymap.set(
@@ -116,15 +116,27 @@ vim.keymap.set(
     require('bufdelete').bufdelete(0, true)
   end,
   { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>bO', ':%bd|e#|bd#<CR>', { noremap = true, silent = true })
+vim.keymap.set(
+  'n',
+  '<Leader>bO',
+  function()
+    local bufdelete = require('bufdelete')
+    local curr_buf = vim.api.nvim_get_current_buf()
+
+    for _, buf_num in pairs(vim.api.nvim_list_bufs()) do
+      if vim.fn.buflisted(buf_num) == 1 and buf_num ~= curr_buf then
+        bufdelete.bufdelete(buf_num, false)
+      end
+    end
+  end)
 
 -- Terminal
-vim.api.nvim_set_keymap('', '<Leader>oe', ':split term://zsh<CR>', { noremap = true, silent = true })
+vim.keymap.set('', '<Leader>oe', ':split term://zsh<CR>', { noremap = true, silent = true })
 
-vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true })
-vim.api.nvim_set_keymap('t', '<C-p>', '<Up>', { noremap = true })
-vim.api.nvim_set_keymap('t', '<C-n>', '<Down>', { noremap = true })
-vim.api.nvim_set_keymap('t', '<A-l>', '<Right>', { noremap = true })
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true })
+vim.keymap.set('t', '<C-p>', '<Up>', { noremap = true })
+vim.keymap.set('t', '<C-n>', '<Down>', { noremap = true })
+vim.keymap.set('t', '<A-l>', '<Right>', { noremap = true })
 vim.cmd[[ au TermOpen * setlocal nonumber ]]
 vim.cmd[[ au TermOpen * setlocal modifiable ]]
 vim.cmd[[ au TermOpen * if &buftype ==# 'terminal' | resize 8 | endif ]]
@@ -143,9 +155,9 @@ vim.keymap.set(
 )
 --
 
-vim.api.nvim_set_keymap('n', '<Space>fs', ':w<CR>', { noremap = true })
+vim.keymap.set('n', '<Space>fs', ':w<CR>', { noremap = true })
 
-vim.api.nvim_set_keymap('n', '<Leader>sc', ':nohlsearch<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<Leader>sc', ':nohlsearch<CR>', { noremap = true, silent = true })
 
 -- buffers
 vim.keymap.set({ 'v', 'n' }, '[b', '<Cmd>bprevious<CR>')
