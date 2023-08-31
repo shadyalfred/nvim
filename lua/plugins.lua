@@ -113,6 +113,10 @@ return {
               wrap = false,
               multi_window = false
             },
+            label = {
+              after = false,
+              before = true,
+            },
           })
         end,
         mode = {'n', 'x', 'o'},
