@@ -5,4 +5,6 @@ require('lazy-init')
 local plugins = require('plugins')
 require('lazy').setup(plugins)
 
-require('config.neovide')
+if vim.g.neovide then
+  require('config.neovide')
+end
