@@ -109,7 +109,13 @@ vim.keymap.set(
   { noremap = true, silent = true }
 )
 
-vim.api.nvim_set_keymap('n', '<Leader>bD', ':bd!<CR>', { noremap = true, silent = true })
+vim.keymap.set(
+  'n',
+  '<Leader>bD',
+  function()
+    require('bufdelete').bufdelete(0, true)
+  end,
+  { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>bO', ':%bd|e#|bd#<CR>', { noremap = true, silent = true })
 
 -- Terminal
@@ -159,15 +165,6 @@ vim.opt.listchars:append({ tab = '--⇥' })
 
 vim.opt.list = true
 
--- Theme
-if vim.env.TERM == 'xterm' then
-  vim.cmd[[colorscheme tokyonight-day]]
-  vim.cmd[[set termbidi]]
-  vim.cmd[[set arabic]]
-else
-  vim.cmd[[colorscheme tokyonight]]
-end
-
 if vim.g.goneovim then
   vim.cmd[[set linespace=20]]
 end
@@ -177,11 +174,11 @@ vim.o.grepprg = 'rg --vimgrep --no-heading --smart-case'
 vim.cmd[[
 " create a self-clearing autocommand group called 'AutoOpenQuicklistGrep'
 augroup AutoOpenQuicklistGrep
-    " clear all autocommands in this group
-    autocmd!
+  " clear all autocommands in this group
+  autocmd!
 
-    " do :cwindow if the quickfix command doesn't start
-    " with a 'l' (:grep, :make, etc.)
-    autocmd QuickFixCmdPost grep copen 5
+  " do :cwindow if the quickfix command doesn't start
+  " with a 'l' (:grep, :make, etc.)
+  autocmd QuickFixCmdPost grep copen 5
 augroup END
 ]]

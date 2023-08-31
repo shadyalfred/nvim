@@ -1,15 +1,5 @@
 local telescope = require('telescope')
 
-telescope.setup({
-  extensions = {
-    media_files = {
-      filetypes = {'png', 'webp', 'jpg', 'jpeg', 'pdf'},
-      find_cmd = 'rg'
-    },
-  }
-})
-
-telescope.load_extension('media_files')
 telescope.load_extension('fzf')
 
 function vim.getVisualSelection()
@@ -43,7 +33,7 @@ vim.api.nvim_set_keymap(
 
 vim.api.nvim_set_keymap(
   'n',
-  '<Leader>.',
+  '<Leader><Leader>',
   '<cmd>Telescope find_files<cr>',
   { noremap = true, silent = true }
 )
@@ -102,7 +92,7 @@ vim.api.nvim_set_keymap(
 
 vim.keymap.set(
   { 'n', 'v' },
-  '<Leader><Leader>',
+  '<Leader>:',
   '<cmd>Telescope commands<cr>',
   { noremap = true, silent = true }
 )

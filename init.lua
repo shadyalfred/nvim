@@ -1,44 +1,8 @@
-require('plugins')
+require('config.general')
 
-require('guess-indent').setup {}
+require('lazy-init')
 
-require('config.nvim-tree')
-
-require('Comment').setup()
-
-require('config')
-
-require('config.lualine')
-
-require('config.tabby')
-
-require('config.align')
-
-require('config.maximize')
-
-require('config.nvim-cmp')
-
-require('config.lsp')
-
-require('config.nvim-spectre')
-
-require('config.nvim-ufo')
-
-require('config.nvim-dap')
-
-require('config.trouble')
-
-require('config.rust-tools')
-require('config.go')
-
-require('config.telescope')
-
-require('config.gitsigns')
-
-require('config.markdown-preview')
-
-require('config.carbon')
-
-require('config.colorful-winsep')
+local plugins = require('plugins')
+require('lazy').setup(plugins)
 
 require('config.neovide')

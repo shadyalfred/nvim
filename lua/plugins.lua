@@ -1,105 +1,261 @@
-return require('packer').startup(function()
-  use 'wbthomason/packer.nvim'
+return {
+  {
+    'folke/tokyonight.nvim',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      if vim.env.TERM == 'xterm' then
+        vim.cmd[[colorscheme tokyonight-day]]
+        vim.cmd[[set termbidi]]
+        vim.cmd[[set arabic]]
+      else
+        vim.cmd[[colorscheme tokyonight]]
+      end
+    end
+  },
 
-  use 'nvim-lua/plenary.nvim'
+  'nvim-lua/plenary.nvim',
 
-  use {
+  {
     'nvim-treesitter/nvim-treesitter',
-    run = function()
-      require('nvim-treesitter.install')
-        .update({ with_sync = true })
-    end,
+    build = ':TSUpdate',
     config = function()
       require('config.nvim-treesitter')
     end
-  }
+  },
 
-  use {
+  {
     'nvim-treesitter/nvim-treesitter-context',
-    requires = 'nvim-treesitter/nvim-treesitter',
-    config = function()
-      require('config.nvim-treesitter-context')
-    end
-  }
+    dependencies = 'nvim-treesitter/nvim-treesitter',
+    config = true,
+  },
 
-  use {
+  {
     'nvim-treesitter/nvim-treesitter-textobjects',
-    after = 'nvim-treesitter',
-    requires = 'nvim-treesitter/nvim-treesitter',
-  }
+    dependencies = {
+      'nvim-treesitter',
+      'nvim-treesitter/nvim-treesitter',
+    },
+  },
 
-  use 'tpope/vim-repeat'
-  use 'Vonr/align.nvim'
+  {
+    'kevinhwang91/nvim-ufo',
+    dependencies = 'kevinhwang91/promise-async',
+    config = function()
+      require('config.nvim-ufo')
+    end,
+  },
 
-  use {
+  'tpope/vim-repeat',
+  
+  {
+    'Vonr/align.nvim',
+    keys = {
+      {
+        'ga',
+        function()
+          require('align').align_to_char(2, true, true)
+        end,
+        mode = 'x',
+        desc = 'Align selection with 1 or 2 chars',
+      },
+    },
+  },
+
+  {
     'kylechui/nvim-surround',
-    tag = '*',
-    config = function()
-      require('nvim-surround').setup()
-    end
-  }
+    version = '*',
+    config = true,
+  },
 
-  use {
+  {
     'windwp/nvim-autopairs',
-    config = function()
-      require('nvim-autopairs').setup({
-        disable_filetype = { 'TelescopePrompt', 'text', 'markdown', },
-        disable_in_macro = true,
-        disable_in_visualblock = true
-      })
-    end
-  }
+    opts = {
+      disable_filetype       = {
+        'TelescopePrompt',
+        'text',
+        'markdown',
+      },
+      disable_in_macro       = true,
+      disable_in_visualblock = true,
+    },
+  },
 
-  use 'NMAC427/guess-indent.nvim'
-
-  use 'folke/tokyonight.nvim'
-
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-  }
-
-  use 'nanozuki/tabby.nvim'
-
-  use {
-    'nvim-telescope/telescope-fzf-native.nvim',
-    run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
-  }
-
-  use {
-    'nvim-telescope/telescope.nvim', branch = '0.1.x',
-    requires = 'nvim-lua/plenary.nvim'
-  }
-
-  use {
-    'nvim-telescope/telescope-media-files.nvim',
-    requires = {
-      'nvim-lua/popup.nvim',
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim'
-    }
-  }
-
-  use {
+  {
     'folke/flash.nvim',
+    opts = {
+      label = {
+        after = false,
+        before = true,
+      },
+      highlight = {
+        backdrop = false,
+      },
+      search = {
+        wrap = false,
+        multi_window = false,
+      },
+      modes = {
+        char = {
+          highlight = {
+            backdrop = false,
+          }
+        }
+      }
+    },
+    keys = {
+      {
+        's',
+        function()
+          require('flash').jump({
+            search = {
+              forward = true,
+              wrap = false,
+              multi_window = false
+            },
+          })
+        end,
+        mode = {'n', 'x', 'o'},
+        desc = 'flash search'
+      },
+      {
+        'gsj',
+        function()
+          local col = vim.api.nvim_win_get_cursor(0)[2]
+
+          require('flash').jump({
+            jump = {
+              offset = col,
+            },
+            search = {
+              mode = 'search',
+              max_length = 0,
+              forward = true,
+              wrap = false,
+              multi_window = false,
+            },
+            pattern = '^',
+            label = {
+              before = { 0, col },
+              after = false,
+            },
+            highlight = {
+              matches = false,
+            },
+          })
+        end,
+        mode = {'n', 'x', 'o'},
+        desc = 'flash go to line below',
+      },
+      {
+        'gsk',
+        function()
+          local col = vim.api.nvim_win_get_cursor(0)[2]
+
+          require('flash').jump({
+            jump = {
+              offset = col,
+            },
+            search = {
+              mode = 'search',
+              max_length = 0,
+              forward = false,
+              wrap = false,
+              multi_window = false,
+            },
+            pattern = '^',
+            label = {
+              before = { 0, col },
+              after = false,
+            },
+            highlight = {
+              matches = false,
+            },
+          })
+        end,
+        mode = {'n', 'x', 'o'},
+        desc = 'flash go to line up',
+      }
+    },
     config = function()
-      require('config.flash')
+      vim.api.nvim_set_hl(0, 'FlashLabel', { fg = '#000000', bg = '#ff007c' })
+    end,
+  },
+
+  {
+    'NMAC427/guess-indent.nvim',
+    config = true,
+  },
+
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = 'nvim-tree/nvim-web-devicons',
+    priority = 100,
+    config = function()
+      require('config.lualine')
     end
-  }
+  },
 
-  use {
+  {
+    'nanozuki/tabby.nvim',
+    config = function()
+      require('config.tabby')
+    end,
+  },
+
+  {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+  },
+
+  {
+    'nvim-telescope/telescope.nvim',
+    branch = '0.1.x',
+    dependencies = 'nvim-lua/plenary.nvim',
+    opts = {
+      extensions = {
+        file_browser = {
+          theme = 'ivy',
+          hijack_netrw = true,
+        },
+      },
+    },
+    config = function()
+      require('config.telescope')
+    end,
+  },
+
+  {
     'nvim-tree/nvim-tree.lua',
-    requires = {
-      'kyazdani42/nvim-web-devicons',
-    }
-  }
+    opts = {
+      hijack_netrw = false,
+      sync_root_with_cwd = true,
+      view = {
+        side = 'right'
+      },
+    },
+    dependencies = 'nvim-tree/nvim-web-devicons',
+    keys = {
+      {
+        '<Leader>op',
+        '<Cmd>NvimTreeToggle<CR>',
+        desc = 'Toggle nvim-tree',
+      },
+    },
+  },
 
-  use 'neovim/nvim-lspconfig'
-  use 'mfussenegger/nvim-jdtls'
+  {
+    'neovim/nvim-lspconfig',
+    config = function()
+      require('config.lsp')
+    end
+  },
 
-  use {
+  'onsails/lspkind.nvim',
+
+  {
     'hrsh7th/nvim-cmp',
-    requires = {
+    dependencies = {
       'neovim/nvim-lspconfig',
       'hrsh7th/cmp-nvim-lsp-signature-help',
       'hrsh7th/cmp-nvim-lsp',
@@ -107,160 +263,310 @@ return require('packer').startup(function()
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
       'hrsh7th/cmp-vsnip'
-    }
-  }
+    },
+    config = function()
+      require('config.nvim-cmp')
+    end,
+  },
 
-  use {
+  {
     'hrsh7th/vim-vsnip',
-    requires =  {
+    dependencies =  {
       'hrsh7th/vim-vsnip-integ',
       'rafamadriz/friendly-snippets',
     }
-  }
+  },
 
-  use 'onsails/lspkind.nvim'
-
-  use {
+  {
     'folke/trouble.nvim',
-    requires = 'kyazdani42/nvim-web-devicons',
-  } 
+    dependencies = 'nvim-tree/nvim-web-devicons',
+    opts = {
+      height = 5,
+    },
+    keys = {
+      {
+        '<Leader>dl',
+        '<Cmd>Trouble<CR>',
+        desc = '[Trouble] List errors',
+      },
+      {
+        '<Leader>dL',
+        '<Cmd>Trouble workspace_diagnostics<CR>',
+        desc = '[Trouble] workspace diagnostics',
+      },
+      {
+        '<Leader>xd',
+        '<Cmd>Trouble document_diagnostics<CR>',
+        desc = '[Trouble] document diagnostics'
+      },
+      {
+        '<Leader>xl',
+        '<Cmd>Trouble loclist<CR>',
+        desc = '[Trouble] loclist'
+      },
+      {
+        '<Leader>xq',
+        '<Cmd>Trouble quickfix<CR>',
+        desc = '[Trouble] quickfix',
+      },
+      {
+        'gR',
+        '<Cmd>Trouble lsp_references<CR>',
+        desc = '[Trouble] lsp references',
+      },
+    },
+  },
 
-  use 'mfussenegger/nvim-dap'
+  'mfussenegger/nvim-dap',
 
-  use {
+  {
     'rcarriga/nvim-dap-ui',
-    requires = { 'mfussenegger/nvim-dap' }
-  }
+    dependencies = 'mfussenegger/nvim-dap',
+    config = function()
+      require('config.nvim-dap')
+    end,
+  },
 
-  use {
+  {
+    'mfussenegger/nvim-jdtls',
+    ft = 'java',
+  },
+
+  {
     'TimUntersberger/neogit',
-    requires = {
+    dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope.nvim', -- optional
       'sindrets/diffview.nvim',        -- optional
     },
+    lazy = true,
+    config = true,
+    keys = {
+      {
+        '<Leader>gg',
+        '<Cmd>Neogit<CR>',
+        desc = 'Neogit',
+      },
+    },
+  },
+
+  {
+    'lewis6991/gitsigns.nvim',
     config = function()
-      require('config.neogit')
-    end
-  }
+      require('config.gitsigns')
+    end,
+  },
 
-  use 'lewis6991/gitsigns.nvim'
-
-  use {
+  {
     'nvim-telescope/telescope-file-browser.nvim',
-    requires = {
+    dependencies = {
       'nvim-telescope/telescope.nvim',
       'nvim-lua/plenary.nvim',
       'nvim-tree/nvim-web-devicons'
     },
     config = function()
-      require('config.telescope-file-browser')
-    end
-  }
+      require('telescope').load_extension('file_browser')
+    end,
+    keys = {
+      {
+        '<Leader>ff',
+        ':Telescope file_browser<CR>',
+        desc = 'Telescope file browser',
+      },
+      {
+        '<Leader>.',
+        ':Telescope file_browser<CR>',
+        desc = 'Telescope file browser',
+      },
+      {
+        '<Leader>fb',
+        ':Telescope file_browser path=%:p:h select_buffer=true<CR>',
+        desc = 'Telescope file browser in current buffer',
+      },
+    },
+  },
 
-  use 'numToStr/Comment.nvim'
+  {
+    'numToStr/Comment.nvim',
+    config = true,
+  },
 
-  use 'windwp/nvim-ts-autotag'
+  'windwp/nvim-ts-autotag',
 
-  use {
-    'kevinhwang91/nvim-ufo',
-    requires = 'kevinhwang91/promise-async'
-  }
+  'famiu/bufdelete.nvim',
 
-  use 'famiu/bufdelete.nvim'
-
-  use 'caenrique/nvim-maximize-window-toggle'
-
-  use {
-    'windwp/nvim-spectre',
-    requires = {
-      'nvim-lua/plenary.nvim',
-      'kyazdani42/nvim-web-devicons'
+  {
+    'caenrique/nvim-maximize-window-toggle',
+    keys = {
+      {
+        '<Leader>wm',
+        '<Cmd> ToggleOnly<CR>',
+        desc = 'Maximize current window in a new tab',
+      }
     }
-  }
+  },
 
-  use 'vim-scripts/ReplaceWithRegister'
+  {
+    'windwp/nvim-spectre',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons'
+    },
+    keys = {
+      {
+        '<Leader>pS',
+        '<Cmd>lua require("spectre").open()<CR>',
+        desc = '[Spectre] open',
+      },
+      {
+        '<Leader>sw',
+        '<Cmd>lua require("spectre").open_visual({select_word=true})<CR>',
+        desc = '[Spectre] open with current word',
+      },
+      {
+        '<Leader>s',
+        '<Esc>:lua require("spectre").open_visual()<CR>',
+        mode = 'v',
+        desc = '[Spectre] open with current selection',
+      },
+      {
+        '<Leader>sf',
+        'viw:lua require("spectre").open_file_search()<CR>',
+        desc = '[Spectre] open current word in current buffer only',
+      },
+    },
+  },
 
-  use {
+  'vim-scripts/ReplaceWithRegister',
+
+  {
     'smjonas/live-command.nvim',
     config = function()
-      require('live-command').setup {
+      require('live-command').setup({
         commands = {
           Norm = { cmd = 'norm' },
         },
-      }
+      })
     end,
-  }
+  },
 
-  use({
+  {
     'princejoogie/dir-telescope.nvim',
-    requires = { 'nvim-telescope/telescope.nvim' },
-    config = function()
-      require('dir-telescope').setup({
-        hidden = true,
-        respect_gitignore = true,
-      })
-    end,
-  })
+    dependencies = { 'nvim-telescope/telescope.nvim' },
+    opts = {
+      hidden            = true,
+      respect_gitignore = true,
+    },
+  },
 
-  use {
-    'RishabhRD/nvim-cheat.sh',
-    requires =  'RishabhRD/popfix'
-  }
+  {
+    'ellisonleao/carbon-now.nvim',
+    opts = {
+      options = {
+        theme = 'material',
+        -- window_theme = 'none',
+        font_family = 'Iosevka',
+        -- font_size = '18px',
+        -- bg = 'gray',
+        -- line_numbers = true,
+        -- line_height = '133%',
+        -- drop_shadow = false,
+        -- drop_shadow_offset_y = '20px',
+        -- drop_shadow_blur = '68px',
+        -- width = '680',
+        -- watermark = false,
+      },
+    },
 
-  use 'ellisonleao/carbon-now.nvim'
+  },
 
-  use 'nvim-zh/colorful-winsep.nvim'
+  {
+    'nvim-zh/colorful-winsep.nvim',
+    opts = {
+      -- highlight for Window separator
+      highlight = {
+        bg = '#24283B',
+        fg = '#7AA2F7',
+      },
+      -- timer refresh rate
+      interval = 30,
+      -- This plugin will not be activated for filetype in the following table.
+      no_exec_files = { 'packer', 'TelescopePrompt', 'mason', 'CompetiTest', 'NvimTree' },
+      -- Symbols for separator lines, the order: horizontal, vertical, top left, top right, bottom left, bottom right.
+      symbols = { '━', '┃', '┏', '┓', '┗', '┛' },
+    }
+  },
 
-  use {
+  {
     'shortcuts/no-neck-pain.nvim',
-    tag = '*'
-  }
+    version = '*'
+  },
 
-  use {
+  {
     'vimwiki/vimwiki',
-    config = function()
+    keys = {
+      {
+        '<Leader>ww',
+        function()
+          vim.cmd[[cd ~/Obsidian]]
+          vim.cmd[[VimwikiIndex]]
+          print('Vimwiki')
+        end,
+        desc = 'Vimwiki Index',
+      },
+    },
+    lazy = true,
+    cmd = 'VimwikiIndex',
+    init = function()
       require('config.vimwiki')
-    end
-  }
+    end,
+  },
 
-  use 'godlygeek/tabular'
+  'godlygeek/tabular',
 
-  use {
-    'mcookly/rosetta.nvim',
-    config = function()
-      require('rosetta').setup({
-        keyboard = {
-          enabled = false,
-        },
-      })
-    end
-  }
-
-  use {
+  {
     'kana/vim-textobj-line',
-    requires = 'kana/vim-textobj-user'
-  }
+    dependencies = 'kana/vim-textobj-user'
+  },
 
   -- langauge specific
-  use {
+  {
     'simrat39/rust-tools.nvim',
-    requires = {
+    dependencies = {
       'neovim/nvim-lspconfig',
       'nvim-lua/plenary.nvim',
       'mfussenegger/nvim-dap',
-    }
-  }
+    },
+    ft = 'rust',
+    config = function()
+      require('config.rust-tools')
+    end,
+  },
 
-  use {
+  {
     'ray-x/go.nvim',
-    requires = 'ray-x/guihua.lua'
-  }
+    dependencies = 'ray-x/guihua.lua',
+    ft = 'go',
+    config = function()
+      require('config.go')
+    end,
+  },
 
-  use {
+  {
     'iamcco/markdown-preview.nvim',
-    run = 'cd app && npm install',
-    setup = function() vim.g.mkdp_filetypes = { 'markdown' } end,
-    ft = { 'markdown' },
-  }
-end)
+    build = 'cd app && npm install',
+    init = function() vim.g.mkdp_filetypes = { 'markdown' } end,
+    ft = { 'markdown', 'vimwiki' },
+    config = function()
+      require('config.markdown-preview')
+    end,
+  },
+
+  -- local plugins
+  {
+    'shadyalfred/electric-quotes.nvim',
+    url = '/home/shady/HDD/Projects/electric-quotes.nvim',
+    dependencies = 'uga-rosa/utf8.nvim',
+    cmd = 'ElectricQuotesToggle',
+  },
+}

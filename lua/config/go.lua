@@ -10,4 +10,8 @@ require('go').setup({
   max_line_len = 80
 })
 
-vim.keymap.set('n', '<Leader>oi', '<Cmd> GoImport <CR>', { noremap = true, silent = true })
+vim.keymap.set(
+  'n',
+  '<Leader>oi',
+  '<Cmd> GoImport <CR>'
+)
