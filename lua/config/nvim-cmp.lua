@@ -1,4 +1,4 @@
-local cmp = require'cmp'
+local cmp = require('cmp')
 
 vim.o.completeopt = 'menu,menuone,noselect,preview'
 
