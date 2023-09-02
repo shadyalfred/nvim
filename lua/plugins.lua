@@ -78,7 +78,9 @@ return {
       },
       disable_in_macro       = true,
       disable_in_visualblock = true,
+      break_undo             = false,
     },
+    event = 'InsertEnter',
   },
 
   {
@@ -569,8 +571,8 @@ return {
   -- local plugins
   {
     'shadyalfred/electric-quotes.nvim',
-    url = '/home/shady/HDD/Projects/electric-quotes.nvim',
     dependencies = 'uga-rosa/utf8.nvim',
     cmd = 'ElectricQuotesToggle',
+    dev = true,
   },
 }
