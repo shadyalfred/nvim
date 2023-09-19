@@ -93,8 +93,7 @@ vim.api.nvim_set_keymap(
 vim.keymap.set(
   { 'n', 'v' },
   '<Leader>:',
-  '<cmd>Telescope commands<cr>',
-  { noremap = true, silent = true }
+  '<Cmd>Telescope commands<CR>'
 )
 
 vim.api.nvim_set_keymap(
