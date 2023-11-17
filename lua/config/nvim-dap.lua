@@ -17,12 +17,11 @@ dap.adapters.coreclr = {
   args = { '--interpreter=vscode' }
 }
 
-dap.adapters.php = {
-  type = 'executable',
-  command = vim.env.NVM_BIN .. '/node',
-  args = { vim.env.HOME .. '/.config/nvim/libs/vscode-php-debug/out/phpDebug.js' }
-}
-
+  dap.adapters.php = {
+    type = 'executable',
+    -- command = vim.env.NVM_BIN .. '/node',
+    -- args = { vim.env.HOME .. '/.config/nvim/libs/vscode-php-debug/out/phpDebug.js' }
+  }
 -- C++
 dap.configurations.cpp = {
   {

@@ -83,10 +83,6 @@ lspconfig.csharp_ls.setup{
 lspconfig.emmet_ls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
-  cmd = {
-    vim.env.NVM_BIN .. '/emmet-ls',
-    '--stdio'
-  }
 })
 
 -- golang
@@ -104,9 +100,6 @@ lspconfig.pylsp.setup({
 lspconfig.tsserver.setup({
   on_attach = on_attach,
   capabilities = capabilities,
-  cmd = {
-    vim.env.NVM_BIN .. '/typescript-language-server', '--stdio'
-  }
 })
 
 -- VueJS
@@ -125,15 +118,7 @@ lspconfig.ocamllsp.setup({
 lspconfig.intelephense.setup({
   on_attach = on_attach,
   capabilities = capabilities,
-  init_options = {
-    globalStoragePath = vim.env.HOME .. '/.cache/nvim'
-  },
-  cmd = {
-    vim.env.NVM_BIN .. '/intelephense', '--stdio'
-  }
 })
-
-
 -- Lua
 lspconfig.lua_ls.setup {
   on_init = function(client)
@@ -167,5 +152,6 @@ lspconfig.lua_ls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
 }
+
 -- Format on save
 vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
