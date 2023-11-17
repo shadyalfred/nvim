@@ -542,6 +542,33 @@ return {
     dependencies = 'kana/vim-textobj-user'
   },
 
+  {
+    'anuvyklack/hydra.nvim',
+    config = function()
+      local Hydra = require('hydra')
+      Hydra({
+        name = 'Resize window',
+        hint = false,
+        mode = 'n',
+        body = '<Leader>w',
+        heads = {
+          {
+            '<', '<C-w><'
+          },
+          {
+            '>', '<C-w>>'
+          },
+          {
+            '+', '<C-w>+'
+          },
+          {
+            '-', '<C-w>-'
+          },
+        }
+      })
+    end
+  },
+
   -- langauge specific
   {
     'simrat39/rust-tools.nvim',
