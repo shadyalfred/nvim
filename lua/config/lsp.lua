@@ -110,6 +110,12 @@ lspconfig.vuels.setup({
   capabilities = capabilities,
 })
 
+-- OCaml
+lspconfig.ocamllsp.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+
 -- PHP
 lspconfig.intelephense.setup({
   on_attach = on_attach,
