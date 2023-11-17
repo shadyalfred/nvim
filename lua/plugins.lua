@@ -14,6 +14,14 @@ return {
     end
   },
 
+  {
+    'max397574/better-escape.nvim',
+    opts = {
+      mapping = { 'kj' },
+      timeout = 100,
+    }
+  },
+
   'nvim-lua/plenary.nvim',
 
   {
