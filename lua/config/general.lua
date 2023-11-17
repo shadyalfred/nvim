@@ -5,7 +5,11 @@ end
 
 -- Set default clipboard to the system wide clipboard
 vim.o.clipboard = 'unnamedplus'
-vim.o.pastetoggle = '<Space>p'
+
+vim.api.nvim_create_autocmd('InsertLeave', {
+  pattern = '*',
+  command = 'set nopaste'
+})
 
 -- Show line's number
 vim.wo.number = true
