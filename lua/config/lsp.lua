@@ -95,6 +95,11 @@ lspconfig.gopls.setup({
   capabilities = capabilities,
 })
 
+lspconfig.pylsp.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+
 -- TypeScript
 lspconfig.tsserver.setup({
   on_attach = on_attach,
