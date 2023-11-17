@@ -1,5 +1,5 @@
 require('gitsigns').setup({
-  on_attach = function(bfnr)
+  on_attach = function(bufnr)
     local gs = package.loaded.gitsigns
 
     local function map(mode, l, r, opts)
