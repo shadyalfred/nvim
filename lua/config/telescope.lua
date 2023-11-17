@@ -1,7 +1,3 @@
-local telescope = require('telescope')
-
-telescope.load_extension('fzf')
-
 function vim.getVisualSelection()
   vim.cmd('noau normal! "vy"')
   local text = vim.fn.getreg('v')
