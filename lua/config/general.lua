@@ -1,6 +1,6 @@
 -- Set `cwd` to the argument passed to nvim command
-if vim.fn.isdirectory(vim.v.argv[3]) == 1 then
-  vim.api.nvim_set_current_dir(vim.v.argv[3])
+if vim.fn.isdirectory(vim.v.argv[#vim.v.argv]) == 1 then
+  vim.api.nvim_set_current_dir(vim.v.argv[#vim.v.argv])
 end
 
 -- Set default clipboard to the system wide clipboard
