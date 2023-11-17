@@ -4,3 +4,5 @@ libs/**
 plugin/**
 !plugin
 lazy-lock.json
+
+.direnv/
