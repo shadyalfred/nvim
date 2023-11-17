@@ -28,6 +28,9 @@ vim.api.nvim_create_autocmd(
 -- Highlight current line
 vim.wo.cursorline = true
 
+-- virtualedit
+vim.opt.virtualedit = 'block'
+
 -- Use spaces instead of tab
 vim.api.nvim_command('set expandtab')
 vim.api.nvim_command('set tabstop=4')
