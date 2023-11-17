@@ -55,7 +55,6 @@ return {
   },
 
   'tpope/vim-repeat',
-  
   {
     'Vonr/align.nvim',
     keys = {
