@@ -155,8 +155,9 @@ vim.keymap.set(
     local Job = require'plenary.job'
 
     Job:new({
-      command = 'kitty',
+      command = 'wezterm',
       cwd = vim.fn.getcwd(),
+      args = { 'start', '--cwd', vim.fn.getcwd() }
     }):start()
   end
 )
