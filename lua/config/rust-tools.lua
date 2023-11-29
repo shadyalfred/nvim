@@ -37,8 +37,6 @@ rt.setup({
       -- Code action groups
       vim.keymap.set({ 'v', 'n' }, '<Leader>ca', rt.code_action_group.code_action_group, { buffer = bufnr })
 
-      vim.keymap.set('n', '<Leader>:', '<Cmd> RustRunnables<CR>')
-
       vim.keymap.set({ 'n', 'v' }, '<M-k>', '<Cmd> RustMoveItemUp<CR>')
       vim.keymap.set({ 'n', 'v' }, '<M-j>', '<Cmd> RustMoveItemDown<CR>')
     end,
