@@ -1,8 +1,9 @@
 vim.g.neovide_cursor_animation_length = 0.01
 
-vim.o.guifont = 'CaskaydiaCove Nerd Font:h10'
+-- vim.o.guifont = 'JetBrainsMono Nerd Font:h9'
+vim.o.guifont = 'Monaspace Neon:h9'
 
-vim.o.linespace = 20
+vim.o.linespace = 12
 
 vim.g.neovide_hide_mouse_when_typing = true
 
