@@ -2,14 +2,16 @@ local dap = require('dap')
 local dapui = require('dapui')
 
 -- Adapters
-dap.adapters.codelldb = {
-  type = 'server',
-  port = '${port}',
-  executable = {
-    command = vim.env.HOME .. '/.config/nvim/libs/vadimcn.vscode-lldb-1.7.4/extension/adapter/codelldb',
-    args = {'--port', '${port}'},
+if vim.env.CODELLDB_PATH ~= nil then
+  dap.adapters.codelldb = {
+    type = 'server',
+    port = '${port}',
+    executable = {
+      command = vim.env.CODELLDB_PATH .. '/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb',
+      args = {'--port', '${port}'},
+    }
   }
-}
+end
 
 dap.adapters.coreclr = {
   type = 'executable',
@@ -40,7 +42,7 @@ dap.configurations.cpp = {
 dap.configurations.rust = {
   {
     program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/', 'file')
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/debug/', 'file')
     end,
     name = 'Rust debug',
     type = 'codelldb',
