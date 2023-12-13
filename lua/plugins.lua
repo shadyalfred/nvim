@@ -511,26 +511,77 @@ return {
   },
 
   {
-    'vimwiki/vimwiki',
-    keys = {
-      {
-        '<Leader>ww',
-        function()
-          vim.cmd[[cd ~/Obsidian]]
-          vim.cmd[[VimwikiIndex]]
-          print('Vimwiki')
-        end,
-        desc = 'Vimwiki Index',
+    'epwalsh/obsidian.nvim',
+    version = '*',
+    lazy = true,
+    event = {
+      -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
+      -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
+      'BufReadPre ~/Obsidian/**.md',
+      'BufNewFile ~/Obsidian/**.md',
+    },
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    opts = {
+      disable_frontmatter = true,
+      workspaces = {
+        {
+          name = 'personal',
+          path = '~/Obsidian',
+        },
+      },
+      completion = {
+        prepend_note_id = false,
+        use_path_only = true,
+      },
+      mappings = {
+        ['gf'] = {
+          action = function()
+            return require('obsidian').util.gf_passthrough()
+          end,
+          opts = { noremap = false, expr = true, buffer = true },
+        },
+        -- Toggle check-boxes.
+        ['<CR>'] = {
+          action = function()
+            return require('obsidian').util.toggle_checkbox()
+          end,
+          opts = { buffer = true },
+        },
       },
     },
-    lazy = true,
-    cmd = 'VimwikiIndex',
-    init = function()
-      require('config.vimwiki')
-    end,
+    keys = {
+      {
+        '<Leader>nf',
+        '<Cmd>ObsidianQuickSwitch<CR>'
+      },
+      {
+        '<Leader>ns',
+        '<Cmd>ObsidianSearch<CR>'
+      },
+    },
   },
 
-  'godlygeek/tabular',
+  {
+    'dhruvasagar/vim-table-mode',
+    ft = 'markdown',
+    config = function()
+      vim.g.table_mode_always_active = 1
+
+      vim.g.table_mode_disable_tableize_mappings = 1
+
+      -- Causes issues
+      -- vim.g.table_mode_disable_mappings = 1
+
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = 'markdown',
+        callback = function()
+          vim.cmd[[silent TableModeEnable]]
+        end
+      })
+    end
+  },
 
   {
     'kana/vim-textobj-line',
