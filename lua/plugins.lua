@@ -61,7 +61,10 @@ return {
       {
         'ga',
         function()
-          require('align').align_to_char(2, true, true)
+          require('align').align_to_char({
+            preview = true,
+            length = 2,
+          })
         end,
         mode = 'x',
         desc = 'Align selection with 1 or 2 chars',
@@ -570,6 +573,8 @@ return {
       vim.g.table_mode_always_active = 1
 
       vim.g.table_mode_disable_tableize_mappings = 1
+
+      vim.g.table_mode_update_time = 50
 
       -- Causes issues
       -- vim.g.table_mode_disable_mappings = 1
