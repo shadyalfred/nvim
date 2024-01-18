@@ -1,6 +1,6 @@
 local cmp = require('cmp')
 
-vim.o.completeopt = 'menu,menuone,noselect,preview'
+vim.opt.completeopt = 'menu,menuone,noselect,preview'
 
 cmp.setup({
   preselect = cmp.PreselectMode.None,

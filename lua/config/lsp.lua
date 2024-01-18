@@ -31,7 +31,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- fix gutter width madness
-vim.o.signcolumn = 'yes'
+vim.opt.signcolumn = 'yes'
 
 local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 for type, icon in pairs(signs) do

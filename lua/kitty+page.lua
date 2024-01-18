@@ -10,7 +10,7 @@ return function(INPUT_LINE_NUMBER, CURSOR_LINE, CURSOR_COLUMN)
   vim.opt.showmode = false
   vim.opt.ruler = false
   vim.opt.laststatus = 0
-  vim.o.cmdheight = 0
+  vim.opt.cmdheight = 0
   vim.opt.showcmd = false
   vim.opt.scrollback = INPUT_LINE_NUMBER + CURSOR_LINE
   local term_buf = vim.api.nvim_create_buf(true, false);

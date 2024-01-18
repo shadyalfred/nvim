@@ -4,7 +4,7 @@ if vim.fn.isdirectory(vim.v.argv[#vim.v.argv]) == 1 then
 end
 
 -- Set default clipboard to the system wide clipboard
-vim.o.clipboard = 'unnamedplus'
+vim.opt.clipboard = 'unnamedplus'
 
 vim.api.nvim_create_autocmd('InsertLeave', {
   pattern = '*',
@@ -41,16 +41,16 @@ vim.api.nvim_command('set shiftwidth=4')
 vim.g.mapleader = ' '
 
 -- Set hidden
-vim.o.hidden = true
+vim.opt.hidden = true
 
 -- Set split below and right
-vim.o.splitbelow = true
-vim.o.splitright = true
+vim.opt.splitbelow = true
+vim.opt.splitright = true
 
-vim.o.splitkeep = 'screen'
+vim.opt.splitkeep = 'screen'
 
 -- Fold level
-vim.o.foldlevel = 99
+vim.opt.foldlevel = 99
 
 -- word wrap
 vim.wo.wrap      = true
@@ -190,7 +190,7 @@ if vim.g.goneovim then
 end
 
 -- use rg for vimgrep
-vim.o.grepprg = 'rg --vimgrep --no-heading --smart-case'
+vim.opt.grepprg = 'rg --vimgrep --no-heading --smart-case'
 vim.cmd[[
 " create a self-clearing autocommand group called 'AutoOpenQuicklistGrep'
 augroup AutoOpenQuicklistGrep
