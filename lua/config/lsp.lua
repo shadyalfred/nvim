@@ -119,6 +119,14 @@ lspconfig.intelephense.setup({
   on_attach = on_attach,
   capabilities = capabilities,
 })
+
+-- Haskell
+lspconfig.hls.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { 'haskell', 'lhaskell', 'cabal' },
+})
+
 -- Lua
 lspconfig.lua_ls.setup {
   on_init = function(client)
