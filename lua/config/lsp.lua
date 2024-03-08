@@ -127,6 +127,12 @@ lspconfig.hls.setup({
   filetypes = { 'haskell', 'lhaskell', 'cabal' },
 })
 
+-- Nix
+lspconfig.nil_ls.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+
 -- Lua
 lspconfig.lua_ls.setup {
   on_init = function(client)
