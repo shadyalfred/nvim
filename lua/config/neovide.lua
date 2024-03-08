@@ -1,6 +1,6 @@
 vim.g.neovide_cursor_animation_length = 0.01
 
-vim.opt.guifont = 'Monaspace Neon:h9'
+vim.opt.guifont = 'SpaceMono Nerd Font:h12'
 
 vim.opt.linespace = 12
 
@@ -16,31 +16,40 @@ require('lualine').setup({
 -- Tabby
 local util = require('tabby.util')
 
-local hl_tabline_fill = util.extract_nvim_hl('lualine_c_normal') -- 背景
+local hl_tabline_fill = util.extract_nvim_hl('lualine_c_normal')
 local hl_tabline = util.extract_nvim_hl('lualine_b_normal')
-local hl_tabline_sel = util.extract_nvim_hl('lualine_a_normal') -- 高亮
+local hl_tabline_sel = util.extract_nvim_hl('lualine_a_normal')
 
-local function tab_label(tabid, active)
-  local icon = active and '' or ''
-  local number = vim.api.nvim_tabpage_get_number(tabid)
-  local name = util.get_tab_name(tabid)
+local function tab_label(tab_id, is_active)
+  local icon = is_active and '' or ''
+  local number = vim.api.nvim_tabpage_get_number(tab_id)
+  local name = util.get_tab_name(tab_id)
 
-  local buid = vim.api.nvim_win_get_buf(vim.api.nvim_get_current_win())
-  local is_modified = vim.api.nvim_buf_get_option(buid, 'modified')
-  local modifiedIcon = is_modified and '' or ''
+  local is_modified = false
 
-  return string.format(' %s %d: %s %s', icon, number, name, modifiedIcon)
+  local win_ids_of_current_tabpage = vim.api.nvim_tabpage_list_wins(tab_id)
+
+  for _, win_id in ipairs(win_ids_of_current_tabpage) do
+    if vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(win_id), 'modified') then
+      is_modified = true
+      break
+    end
+  end
+
+  local modified_icon = is_modified and ' ' or ''
+
+  return string.format(' %s %d: %s %s', icon, number, name, modified_icon)
 end
 
 local left_sep_glyph  = ''
-local right_sep_glyph = ''
+local right_sep_glyph = ' '
 
 local tabline = {
   hl = 'lualine_c_normal',
   layout = 'tab_only',
   head = {
     { left_sep_glyph, hl = { fg = hl_tabline.bg, bg = hl_tabline_fill.bg } },
-    { '  ', hl = { fg = hl_tabline.fg, bg = hl_tabline.bg } },
+    { '  ', hl = { fg = hl_tabline.fg, bg = hl_tabline_fill.bg } },
     { right_sep_glyph, hl = { fg = hl_tabline.bg, bg = hl_tabline_fill.bg } },
   },
   active_tab = {
