@@ -95,6 +95,7 @@ return {
 
   {
     'folke/flash.nvim',
+    event = 'VeryLazy',
     opts = {
       label = {
         after = false,
@@ -214,6 +215,8 @@ return {
 
   {
     'nanozuki/tabby.nvim',
+    event = 'VimEnter',
+    dependencies = 'nvim-tree/nvim-web-devicons',
     config = function()
       require('config.tabby')
     end,
@@ -238,6 +241,7 @@ return {
 
   {
     'nvim-tree/nvim-tree.lua',
+    lazy = true,
     opts = {
       hijack_netrw = false,
       sync_root_with_cwd = true,
@@ -402,7 +406,14 @@ return {
     config = true,
   },
 
-  'windwp/nvim-ts-autotag',
+  {
+    'windwp/nvim-ts-autotag',
+    ft = {
+      'html', 'javascript', 'typescript', 'javascriptreact',
+      'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx', 'rescript',
+      'xml', 'php', 'markdown', 'astro', 'glimmer', 'handlebars', 'hbs',
+    },
+  },
 
   'famiu/bufdelete.nvim',
 
@@ -488,11 +499,12 @@ return {
         -- watermark = false,
       },
     },
-
+    cmd = 'CarbonNow',
   },
 
   {
     'nvim-zh/colorful-winsep.nvim',
+    event = 'WinNew',
     opts = {
       -- highlight for Window separator
       highlight = {
@@ -510,7 +522,8 @@ return {
 
   {
     'shortcuts/no-neck-pain.nvim',
-    version = '*'
+    version = '*',
+    cmd = 'NoNeckPain',
   },
 
   {
@@ -644,12 +657,21 @@ return {
   },
 
   {
+    'mfussenegger/nvim-jdtls',
+    ft = 'java',
+  },
+
+  {
     'iamcco/markdown-preview.nvim',
-    build = 'cd app && npm install',
-    init = function() vim.g.mkdp_filetypes = { 'markdown' } end,
-    ft = { 'markdown', 'vimwiki' },
-    config = function()
-      require('config.markdown-preview')
+    cmd = {
+      'MarkdownPreviewToggle',
+      'MarkdownPreview',
+      'MarkdownPreviewStop'
+    },
+    ft = { 'markdown' },
+    build = 'cd app && yarn install',
+    init = function()
+      vim.g.mkdp_filetypes = { 'markdown' }
     end,
   },
 
