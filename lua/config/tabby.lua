@@ -1,66 +1,102 @@
+vim.o.showtabline = 2
+
 local util = require('tabby.util')
 
-local hl_tabline_fill = util.extract_nvim_hl('lualine_c_normal') -- 背景
-local hl_tabline = util.extract_nvim_hl('lualine_b_normal')
-local hl_tabline_sel = util.extract_nvim_hl('lualine_a_normal') -- 高亮
+local hl_lualine = util.extract_nvim_hl('lualine_b_normal')
+local hl_tabline = util.extract_nvim_hl('TabLine')
+local hl_tablinesel = util.extract_nvim_hl('TabLineSel')
+local hl_tablinefill = util.extract_nvim_hl('TabLineFill')
 
-local function tab_label(tab_id, is_active)
-  local icon = is_active and '' or ''
-  local number = vim.api.nvim_tabpage_get_number(tab_id)
-  local name = util.get_tab_name(tab_id)
+local left_sep_glyph = vim.g.neovide and '' or ''
+local right_sep_glyph = vim.g.neovide and '' or''
 
-  local is_modified = false
-
-  local win_ids_of_current_tabpage = vim.api.nvim_tabpage_list_wins(tab_id)
-
-  for _, win_id in ipairs(win_ids_of_current_tabpage) do
-    if vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(win_id), 'modified') then
-      is_modified = true
-      break
-    end
-  end
-
-  local modified_icon = is_modified and ' ' or ''
-
-  return string.format(' %s %d: %s %s', icon, number, name, modified_icon)
-end
-
-local left_sep_glyph = ''
-local right_sep_glyph = ''
-
-local tabline = {
-  hl = 'lualine_c_normal',
-  layout = 'tab_only',
+local theme = {
+  fill = {
+    fg = hl_tablinefill.fg,
+    bg = hl_tablinefill.bg
+  },
   head = {
-    { left_sep_glyph, hl = { fg = hl_tabline.bg, bg = hl_tabline_fill.bg } },
-    { '  ', hl = { fg = hl_tabline.fg, bg = hl_tabline.bg } },
-    { right_sep_glyph, hl = { fg = hl_tabline.bg, bg = hl_tabline_fill.bg } },
+    fg = hl_tabline.fg,
+    bg = hl_tabline.bg
   },
-  active_tab = {
-    label = function(tabid)
-      return {
-        tab_label(tabid, true),
-        hl = { fg = hl_tabline_sel.fg, bg = hl_tabline_sel.bg, style = 'bold' },
-      }
-    end,
-    left_sep = { left_sep_glyph, hl = { fg = hl_tabline_sel.bg, bg = hl_tabline_fill.bg } },
-    right_sep = { right_sep_glyph, hl = { fg = hl_tabline_sel.bg, bg = hl_tabline_fill.bg } },
+  head_symbol = {
+    fg = hl_lualine.fg,
+    bg = hl_lualine.bg
   },
-  inactive_tab = {
-    label = function(tabid)
-      return {
-        tab_label(tabid, false),
-        hl = { fg = hl_tabline.fg, bg = hl_tabline_fill.bg },
-      }
-    end,
-    left_sep = { '', hl = { fg = hl_tabline.bg, bg = hl_tabline_fill.bg } },
-    right_sep = { '', hl = { fg = hl_tabline.bg, bg = hl_tabline_fill.bg } },
+  tab = {
+    fg = hl_tabline.fg,
+    bg = hl_tabline.bg
+  },
+  current_tab = {
+    fg = hl_tablinesel.fg,
+    bg = hl_tablinesel.bg,
+    style = 'bold'
+  },
+  win = {
+    fg = hl_tabline.fg,
+    bg = hl_tabline.bg
+  },
+  current_win = {
+    fg = hl_tablinefill.fg,
+    bg = hl_tablinefill.bg
   },
 }
 
-require('tabby').setup({
-  tabline = tabline
-})
+require('tabby.tabline').set(function(line)
+  return {
+    {
+      { left_sep_glyph, hl = theme.head },
+      { '  ', hl = theme.head_symbol },
+      { right_sep_glyph, hl = theme.head },
+    },
+    line.tabs().foreach(function(tab)
+      local hl = tab.is_current() and theme.current_tab or theme.tab
+
+      local has_a_modified_buf = false
+
+      tab.wins().foreach(function(win)
+        if win.buf().is_changed() then
+          has_a_modified_buf = true
+          return
+        end
+      end)
+
+      return {
+        line.sep(
+          left_sep_glyph,
+          hl,
+          theme.fill
+        ),
+        tab.is_current() and '' or '',
+        tab.number(),
+        {
+          tab.name(),
+          hl = hl,
+        },
+        has_a_modified_buf and '' or '',
+        line.sep(
+          right_sep_glyph,
+          hl,
+          theme.fill
+        ),
+        hl = hl,
+        margin = ' ',
+      }
+    end),
+    line.spacer(),
+    line.wins_in_tab(line.api.get_current_tab()).foreach(function(win)
+      return {
+        line.sep(left_sep_glyph, theme.win, theme.fill),
+        win.buf().is_changed() and '' or '',
+        win.buf_name(),
+        -- win.file_icon(),
+        line.sep(right_sep_glyph, theme.win, theme.fill),
+        hl = win.is_current() and theme.current_win or theme.win,
+        margin = ' ',
+      }
+    end),
+  }
+end)
 
 vim.api.nvim_set_keymap('n', '<Leader>tN', ':$tabnew<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader><Tab>N', ':$tabnew<CR>', { noremap = true })
