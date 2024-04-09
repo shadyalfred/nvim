@@ -22,8 +22,6 @@ return {
     }
   },
 
-  'nvim-lua/plenary.nvim',
-
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
@@ -55,6 +53,7 @@ return {
   },
 
   'tpope/vim-repeat',
+
   {
     'Vonr/align.nvim',
     keys = {
@@ -336,15 +335,13 @@ return {
 
   {
     'rcarriga/nvim-dap-ui',
-    dependencies = 'mfussenegger/nvim-dap',
+    dependencies = {
+      'mfussenegger/nvim-dap',
+      'nvim-neotest/nvim-nio',
+    },
     config = function()
       require('config.nvim-dap')
     end,
-  },
-
-  {
-    'mfussenegger/nvim-jdtls',
-    ft = 'java',
   },
 
   {
@@ -460,17 +457,6 @@ return {
   },
 
   'vim-scripts/ReplaceWithRegister',
-
-  {
-    'smjonas/live-command.nvim',
-    config = function()
-      require('live-command').setup({
-        commands = {
-          Norm = { cmd = 'norm' },
-        },
-      })
-    end,
-  },
 
   {
     'princejoogie/dir-telescope.nvim',
