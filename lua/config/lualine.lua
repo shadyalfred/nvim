@@ -14,6 +14,6 @@ require('lualine').setup {
     globalstatus = true,
   },
   sections = {
-    lualine_c = { maximize_status, 'filename' }
+    lualine_c = { maximize_status }
   }
 }
