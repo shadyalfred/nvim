@@ -78,6 +78,9 @@ vim.keymap.set(
   end
 )
 
+-- fix gutter width madness
+vim.opt.signcolumn = 'yes'
+
 -- Toggle j/k respect wrapped lines
 vim.keymap.set(
   { 'n', 'v' },
@@ -85,7 +88,7 @@ vim.keymap.set(
   function()
     local isFound = false
 
-    for k, mapping in pairs(vim.api.nvim_get_keymap('n')) do
+    for _, mapping in pairs(vim.api.nvim_get_keymap('n')) do
       if mapping['lhs'] == 'j' then
         isFound = true
         break
